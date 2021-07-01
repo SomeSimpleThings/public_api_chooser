@@ -11,7 +11,7 @@ import javax.inject.Singleton
 class DbModule {
     @Singleton
     @Provides
-    fun provideDatabaseGitHubStorage(context: Context): ApiChooserDb =
+    fun provideLocalStorage(context: Context): ApiChooserDb =
         Room
             .databaseBuilder(context, ApiChooserDb::class.java, "public_api.db")
             .build()
