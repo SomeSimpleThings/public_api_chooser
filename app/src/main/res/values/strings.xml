@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Public api chooser</string>
+    <string name="public_api_url">https://api.publicapis.org/</string>
 </resources>

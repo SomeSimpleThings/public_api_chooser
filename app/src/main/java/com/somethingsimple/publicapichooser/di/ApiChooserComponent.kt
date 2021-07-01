@@ -4,17 +4,21 @@ import android.content.Context
 import com.github.terrakok.cicerone.NavigatorHolder
 import com.github.terrakok.cicerone.Router
 import com.somethingsimple.publicapichooser.ApiChooserApp
+import com.somethingsimple.publicapichooser.di.module.MainModule
+import com.somethingsimple.publicapichooser.di.module.category.CategoryModule
+import com.somethingsimple.publicapichooser.schedulers.Schedulers
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
 import dagger.android.AndroidInjector
-import io.reactivex.rxjava3.schedulers.Schedulers
 import javax.inject.Singleton
 
 @Singleton
 @Component(
     modules = [
         AndroidInjectionModule::class,
+        MainModule::class,
+        CategoryModule::class,
     ]
 )
 interface ApiChooserComponent : AndroidInjector<ApiChooserApp> {

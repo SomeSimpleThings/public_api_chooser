@@ -8,7 +8,7 @@ import retrofit2.http.Query
 
 interface PublicApisApi {
     @GET("/categories")
-    fun getCategories(): Single<List<Category>>
+    fun getCategories(): Single<List<String>>
 
     @GET("/entries")
     fun getApisForCategory(@Query("category") category: String): Single<PublicApiEntries>

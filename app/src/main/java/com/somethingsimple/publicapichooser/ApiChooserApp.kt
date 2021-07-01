@@ -2,6 +2,7 @@ package com.somethingsimple.publicapichooser
 
 import com.github.terrakok.cicerone.Cicerone
 import com.somethingsimple.publicapichooser.di.DaggerApiChooserComponent
+import com.somethingsimple.publicapichooser.schedulers.DefaultSchedulers
 import dagger.android.AndroidInjector
 import dagger.android.DaggerApplication
 
@@ -16,6 +17,7 @@ class ApiChooserApp : DaggerApplication() {
                 withRouter(cicerone.router)
                 withNavigatorHolder(cicerone.getNavigatorHolder())
             }
+            .withSchedulers(DefaultSchedulers)
             .build()
 
 }
