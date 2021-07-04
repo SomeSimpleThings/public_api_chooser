@@ -1,7 +1,7 @@
-package com.somethingsimple.publicapichooser.data.datasource.remote
+package com.somethingsimple.publicapichooser.data.datasource.category.remote
 
 import com.somethingsimple.publicapichooser.data.api.PublicApisApi
-import com.somethingsimple.publicapichooser.data.datasource.CategoryDataSource
+import com.somethingsimple.publicapichooser.data.datasource.category.CategoryDataSource
 import com.somethingsimple.publicapichooser.data.vo.Category
 import io.reactivex.rxjava3.core.Single
 

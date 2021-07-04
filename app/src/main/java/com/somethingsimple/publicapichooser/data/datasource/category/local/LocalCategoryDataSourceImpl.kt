@@ -1,4 +1,4 @@
-package com.somethingsimple.publicapichooser.data.datasource.local
+package com.somethingsimple.publicapichooser.data.datasource.category.local
 
 import com.somethingsimple.publicapichooser.data.db.ApiChooserDb
 import com.somethingsimple.publicapichooser.data.db.CategoryDao

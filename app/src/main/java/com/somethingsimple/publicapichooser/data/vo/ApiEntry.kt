@@ -1,14 +1,19 @@
 package com.somethingsimple.publicapichooser.data.vo
 
 
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
+@Entity
 data class ApiEntry(
-    @SerializedName("API") val api: String,
-    @SerializedName("Auth") val auth: String,
-    @SerializedName("Category") val category: String,
-    @SerializedName("Cors") val cors: String,
-    @SerializedName("Description") val description: String,
-    @SerializedName("HTTPS") val hTTPS: Boolean,
-    @SerializedName("Link") val link: String
+    @PrimaryKey(autoGenerate = true) val id: Long,
+    @ColumnInfo @SerializedName("API") val api: String,
+    @ColumnInfo @SerializedName("Auth") val auth: String,
+    @ColumnInfo @SerializedName("Category") val category: String,
+    @ColumnInfo @SerializedName("Cors") val cors: String,
+    @ColumnInfo @SerializedName("Description") val description: String,
+    @ColumnInfo @SerializedName("HTTPS") val hTTPS: Boolean,
+    @ColumnInfo @SerializedName("Link") val link: String
 )

@@ -10,6 +10,7 @@ import com.somethingsimple.publicapichooser.R
 import com.somethingsimple.publicapichooser.data.repository.category.CategoryRepository
 import com.somethingsimple.publicapichooser.databinding.FragmentCategoriesBinding
 import com.somethingsimple.publicapichooser.schedulers.Schedulers
+import com.somethingsimple.publicapichooser.ui.ApiChooserScreens
 import com.somethingsimple.publicapichooser.ui.common.BackButtonListener
 import com.somethingsimple.publicapichooser.ui.common.BaseFragment
 import moxy.ktx.moxyPresenter
@@ -37,7 +38,8 @@ class CategoriesFragment : BaseFragment(R.layout.fragment_categories),
         CategoriesPresenter(
             categoryRepository,
             router,
-            schedulers
+            schedulers,
+            ApiChooserScreens
         )
     }
 
@@ -49,7 +51,7 @@ class CategoriesFragment : BaseFragment(R.layout.fragment_categories),
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? = FragmentCategoriesBinding.inflate(inflater, container, false)
+    ): View = FragmentCategoriesBinding.inflate(inflater, container, false)
         .apply {
             viewBinding = this
         }
