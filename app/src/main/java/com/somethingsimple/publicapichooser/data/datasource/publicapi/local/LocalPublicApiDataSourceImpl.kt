@@ -17,6 +17,10 @@ class LocalPublicApiDataSourceImpl(db: ApiChooserDb) : LocalPublicApiDataSource 
         TODO("Not yet implemented")
     }
 
+    override fun getApiById(id: Long): Single<ApiEntry> =
+        publicApiDao.getPublicApiById(id)
+
+
     override fun getApiByCategory(categoryName: String): Single<List<ApiEntry>> =
         publicApiDao.getPublicApisByCategory(categoryName)
 

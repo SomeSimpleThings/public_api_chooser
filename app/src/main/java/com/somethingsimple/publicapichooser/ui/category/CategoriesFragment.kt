@@ -9,8 +9,8 @@ import com.github.terrakok.cicerone.Router
 import com.somethingsimple.publicapichooser.R
 import com.somethingsimple.publicapichooser.data.repository.category.CategoryRepository
 import com.somethingsimple.publicapichooser.databinding.FragmentCategoriesBinding
-import com.somethingsimple.publicapichooser.schedulers.Schedulers
 import com.somethingsimple.publicapichooser.ui.ApiChooserScreens
+import com.somethingsimple.publicapichooser.schedulers.Schedulers
 import com.somethingsimple.publicapichooser.ui.common.BackButtonListener
 import com.somethingsimple.publicapichooser.ui.common.BaseFragment
 import moxy.ktx.moxyPresenter

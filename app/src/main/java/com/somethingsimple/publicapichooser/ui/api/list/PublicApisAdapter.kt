@@ -1,4 +1,4 @@
-package com.somethingsimple.publicapichooser.ui.api
+package com.somethingsimple.publicapichooser.ui.api.list
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

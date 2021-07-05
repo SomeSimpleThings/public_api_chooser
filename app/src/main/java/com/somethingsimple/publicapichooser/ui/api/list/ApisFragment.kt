@@ -1,4 +1,4 @@
-package com.somethingsimple.publicapichooser.ui.api
+package com.somethingsimple.publicapichooser.ui.api.list
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,11 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.github.terrakok.cicerone.Router
 import com.somethingsimple.publicapichooser.R
-import com.somethingsimple.publicapichooser.data.repository.publicapi.PublicApiRepository
 import com.somethingsimple.publicapichooser.databinding.FragmentApisBinding
-import com.somethingsimple.publicapichooser.schedulers.Schedulers
+import com.somethingsimple.publicapichooser.ui.ApiChooserScreens
 import com.somethingsimple.publicapichooser.ui.common.BackButtonListener
 import com.somethingsimple.publicapichooser.ui.common.BaseFragment
 import moxy.ktx.moxyPresenter
@@ -25,30 +23,20 @@ class ApisFragment : BaseFragment(R.layout.fragment_apis),
 
     private var viewBinding: FragmentApisBinding? = null
 
-    @Inject
-    lateinit var router: Router
+    private val category: String by lazy {
+        arguments?.getString(ARG_CATEGORY) ?: ""
+    }
 
     @Inject
-    lateinit var apiRepository: PublicApiRepository
-
-    @Inject
-    lateinit var schedulers: Schedulers
+    lateinit var apisPresenterFactory: PublicApisPresenterFactory
 
     private var adapter: PublicApisAdapter? = null
     private val presenter: PublicApisPresenter by moxyPresenter {
-        PublicApisPresenter(
-            apiRepository,
-            router,
-            schedulers
-        )
+        apisPresenterFactory.create(category, ApiChooserScreens)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            val categoryName: String? = it.getString(ARG_CATEGORY)
-            presenter.getApisForCategory(categoryName)
-        }
 
     }
 

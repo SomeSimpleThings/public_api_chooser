@@ -1,19 +1,21 @@
-package com.somethingsimple.publicapichooser.ui.api
+package com.somethingsimple.publicapichooser.ui.api.list
 
 import com.github.terrakok.cicerone.Router
 import com.somethingsimple.publicapichooser.data.repository.publicapi.PublicApiRepository
 import com.somethingsimple.publicapichooser.data.vo.ApiEntry
-import com.somethingsimple.publicapichooser.exception.CategoryNotFound
+import com.somethingsimple.publicapichooser.ui.IScreens
 import com.somethingsimple.publicapichooser.schedulers.Schedulers
+import dagger.assisted.Assisted
+import dagger.assisted.AssistedInject
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import moxy.MvpPresenter
 
-class PublicApisPresenter(
+class PublicApisPresenter @AssistedInject constructor(
+    @Assisted("category") private val category: String,
+    @Assisted("screens") private val screens: IScreens,
     private val publicApiRepository: PublicApiRepository,
     private val router: Router,
-    private val schedulers: Schedulers,
-    private val compositeDisposable: CompositeDisposable = CompositeDisposable()
-
+    private val schedulers: Schedulers
 ) :
     MvpPresenter<PublicApisView>() {
     class PublicApisListPresenterImpl : PublicApiListPresenter {
@@ -28,19 +30,22 @@ class PublicApisPresenter(
     }
 
     val apiListPresenter = PublicApisListPresenterImpl()
+    private val compositeDisposable: CompositeDisposable = CompositeDisposable()
+
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
         viewState.init()
+        loadData()
+        apiListPresenter.itemClickListener = { itemView ->
+            val apiEntry = apiListPresenter.apis[itemView.pos]
+            router.navigateTo(screens.apiDetails(apiEntry.id))
+        }
     }
 
-    fun getApisForCategory(categoryName: String?) {
-        categoryName?.let { loadData(it) } ?: onLoadError(CategoryNotFound())
-    }
-
-    private fun loadData(categoryName: String) {
+    private fun loadData() {
         compositeDisposable.add(
-            publicApiRepository.getPublicApiForCategory(categoryName)
+            publicApiRepository.getPublicApiForCategory(category)
                 .observeOn(schedulers.main())
                 .subscribe(
                     ::apisLoaded,

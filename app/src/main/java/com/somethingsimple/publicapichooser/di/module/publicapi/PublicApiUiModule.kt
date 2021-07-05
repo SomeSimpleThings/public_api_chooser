@@ -1,7 +1,7 @@
 package com.somethingsimple.publicapichooser.di.module.publicapi
 
-import com.somethingsimple.publicapichooser.ui.api.ApiDetailsFragment
-import com.somethingsimple.publicapichooser.ui.api.ApisFragment
+import com.somethingsimple.publicapichooser.ui.api.details.ApiDetailsFragment
+import com.somethingsimple.publicapichooser.ui.api.list.ApisFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 

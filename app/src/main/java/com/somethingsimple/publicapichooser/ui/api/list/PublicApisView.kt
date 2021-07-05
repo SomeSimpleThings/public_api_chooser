@@ -1,4 +1,4 @@
-package com.somethingsimple.publicapichooser.ui.api
+package com.somethingsimple.publicapichooser.ui.api.list
 
 import moxy.MvpView
 import moxy.viewstate.strategy.AddToEndSingleStrategy

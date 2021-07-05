@@ -17,9 +17,11 @@ class PublicApiRepositoryImpl(
             .subscribeOn(Schedulers.io())
 
 
-    override fun getPublicApiById(id: Long): Single<ApiEntry> {
-        TODO("Not yet implemented")
-    }
+    override fun getPublicApiById(id: Long): Single<ApiEntry> =
+        localDataSource
+            .getApiById(id)
+            .subscribeOn(Schedulers.io())
+
 
     private fun fetchRemoteIfRequired(
         apis: List<ApiEntry>,
