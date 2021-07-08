@@ -14,5 +14,6 @@ class DbModule {
     fun provideLocalStorage(context: Context): ApiChooserDb =
         Room
             .databaseBuilder(context, ApiChooserDb::class.java, "public_api.db")
+            .fallbackToDestructiveMigration()
             .build()
 }

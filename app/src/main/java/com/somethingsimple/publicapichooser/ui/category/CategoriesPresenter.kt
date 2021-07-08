@@ -4,6 +4,7 @@ import com.github.terrakok.cicerone.Router
 import com.somethingsimple.publicapichooser.data.repository.category.CategoryRepository
 import com.somethingsimple.publicapichooser.data.vo.Category
 import com.somethingsimple.publicapichooser.schedulers.Schedulers
+import com.somethingsimple.publicapichooser.ui.IScreens
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import moxy.MvpPresenter
 
@@ -11,6 +12,7 @@ class CategoriesPresenter(
     private val categoryRepository: CategoryRepository,
     private val router: Router,
     private val schedulers: Schedulers,
+    private val appScreens: IScreens,
     private val compositeDisposable: CompositeDisposable = CompositeDisposable()
 
 ) :
@@ -32,6 +34,10 @@ class CategoriesPresenter(
         super.onFirstViewAttach()
         viewState.init()
         loadData()
+        categoryListPresenter.itemClickListener = { itemView ->
+            val category = categoryListPresenter.categories[itemView.pos]
+            router.navigateTo(appScreens.apis(category.name))
+        }
     }
 
     private fun loadData() {

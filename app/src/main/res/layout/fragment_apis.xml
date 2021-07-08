@@ -3,11 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.api.ApisFragment">
+    tools:context=".ui.api.list.ApisFragment">
 
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_apis"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        />
+        android:clipToPadding="false"
+        tools:listitem="@layout/publicapi_item" />
+
 
 </FrameLayout>

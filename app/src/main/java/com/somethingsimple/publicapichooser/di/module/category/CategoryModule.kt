@@ -1,10 +1,10 @@
 package com.somethingsimple.publicapichooser.di.module.category
 
 import com.somethingsimple.publicapichooser.data.api.PublicApisApi
-import com.somethingsimple.publicapichooser.data.datasource.CategoryDataSource
-import com.somethingsimple.publicapichooser.data.datasource.local.LocalCategoryDataSource
-import com.somethingsimple.publicapichooser.data.datasource.local.LocalCategoryDataSourceImpl
-import com.somethingsimple.publicapichooser.data.datasource.remote.RemoteCategoryDataSource
+import com.somethingsimple.publicapichooser.data.datasource.category.CategoryDataSource
+import com.somethingsimple.publicapichooser.data.datasource.category.local.LocalCategoryDataSource
+import com.somethingsimple.publicapichooser.data.datasource.category.local.LocalCategoryDataSourceImpl
+import com.somethingsimple.publicapichooser.data.datasource.category.remote.RemoteCategoryDataSource
 import com.somethingsimple.publicapichooser.data.db.ApiChooserDb
 import com.somethingsimple.publicapichooser.data.repository.category.CategoryRepository
 import com.somethingsimple.publicapichooser.data.repository.category.CategoryRepositoryImpl
