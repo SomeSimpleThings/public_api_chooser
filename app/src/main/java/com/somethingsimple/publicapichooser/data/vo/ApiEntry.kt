@@ -16,4 +16,12 @@ data class ApiEntry(
     @ColumnInfo @SerializedName("Description") val description: String,
     @ColumnInfo @SerializedName("HTTPS") val hTTPS: Boolean,
     @ColumnInfo @SerializedName("Link") val link: String
-)
+
+) {
+    fun isHttpsCorrect(): Boolean {
+        return if (hTTPS)
+            link.startsWith("https:")
+        else
+            link.startsWith("http:")
+    }
+}

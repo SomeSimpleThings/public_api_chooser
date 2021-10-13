@@ -8,4 +8,7 @@ import androidx.room.PrimaryKey
 data class Category(
     @PrimaryKey(autoGenerate = true) val id: Long,
     @ColumnInfo val name: String
-)
+) {
+    fun getNameWithId(): String = "$id $name"
+
+}
