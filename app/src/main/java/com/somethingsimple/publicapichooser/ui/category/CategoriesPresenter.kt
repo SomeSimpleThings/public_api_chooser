@@ -5,11 +5,13 @@ import com.somethingsimple.publicapichooser.data.repository.category.CategoryRep
 import com.somethingsimple.publicapichooser.data.vo.Category
 import com.somethingsimple.publicapichooser.schedulers.Schedulers
 import com.somethingsimple.publicapichooser.ui.IScreens
+import com.somethingsimple.publicapichooser.ui.common.ListPresenter
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import moxy.MvpPresenter
 
 class CategoriesPresenter(
     private val categoryRepository: CategoryRepository,
+    private var categoryListPresenter: ListPresenter<CategoryItemView, Category>,
     private val router: Router,
     private val schedulers: Schedulers,
     private val appScreens: IScreens,
@@ -17,26 +19,17 @@ class CategoriesPresenter(
 
 ) :
     MvpPresenter<CategoriesView>() {
-    class CategoryListPresenterImpl : CategoryListPresenter {
-        val categories = mutableListOf<Category>()
-        override var itemClickListener: ((CategoryItemView) -> Unit)? = null
 
-        override fun getCount() = categories.size
-
-        override fun bindView(view: CategoryItemView) {
-            view.bind(categories[view.pos])
-        }
-    }
-
-    val categoryListPresenter = CategoryListPresenterImpl()
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
         viewState.init()
         loadData()
         categoryListPresenter.itemClickListener = { itemView ->
-            val category = categoryListPresenter.categories[itemView.pos]
-            router.navigateTo(appScreens.apis(category.name))
+            categoryListPresenter.getItemAtPos(itemView.pos)?.let {
+                router.navigateTo(appScreens.apis(it.name))
+
+            }
         }
     }
 
@@ -51,13 +44,14 @@ class CategoriesPresenter(
         )
     }
 
-    private fun onLoadError(throwable: Throwable?) {
-        throwable?.let { viewState.loadingError(it.localizedMessage) }
+    private fun onLoadError(throwable: Throwable) {
+        viewState.loadingError(throwable.localizedMessage)
+
     }
 
     private fun onCategoriesLoaded(categories: List<Category>) {
-        categoryListPresenter.categories.clear()
-        categoryListPresenter.categories.addAll(categories)
+        categoryListPresenter.clear()
+        categoryListPresenter.addAll(categories)
         viewState.updateList()
     }
 

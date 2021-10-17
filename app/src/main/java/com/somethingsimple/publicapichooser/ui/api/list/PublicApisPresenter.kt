@@ -3,8 +3,8 @@ package com.somethingsimple.publicapichooser.ui.api.list
 import com.github.terrakok.cicerone.Router
 import com.somethingsimple.publicapichooser.data.repository.publicapi.PublicApiRepository
 import com.somethingsimple.publicapichooser.data.vo.ApiEntry
-import com.somethingsimple.publicapichooser.ui.IScreens
 import com.somethingsimple.publicapichooser.schedulers.Schedulers
+import com.somethingsimple.publicapichooser.ui.IScreens
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
 import io.reactivex.rxjava3.disposables.CompositeDisposable
@@ -23,10 +23,18 @@ class PublicApisPresenter @AssistedInject constructor(
         override var itemClickListener: ((PublicApiItemView) -> Unit)? = null
 
         override fun getCount() = apis.size
+        override fun clear() = apis.clear()
+
 
         override fun bindView(view: PublicApiItemView) {
             view.bind(apis[view.pos])
         }
+
+        override fun addAll(newList: List<ApiEntry>) {
+            apis.addAll(newList)
+        }
+
+        override fun getItemAtPos(pos: Int): ApiEntry? = apis.getOrNull(pos)
     }
 
     val apiListPresenter = PublicApisListPresenterImpl()
@@ -59,7 +67,7 @@ class PublicApisPresenter @AssistedInject constructor(
     }
 
     private fun apisLoaded(apis: List<ApiEntry>) {
-        apiListPresenter.apis.clear()
+        apiListPresenter.clear()
         apiListPresenter.apis.addAll(apis)
         viewState.updateList()
     }

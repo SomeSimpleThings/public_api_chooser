@@ -5,8 +5,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.somethingsimple.publicapichooser.data.vo.Category
 import com.somethingsimple.publicapichooser.databinding.CategoryItemBinding
+import com.somethingsimple.publicapichooser.ui.common.ListPresenter
 
-class CategoriesAdapter(val presenter: CategoryListPresenter) :
+class CategoriesAdapter(val presenter: ListPresenter<CategoryItemView, Category>) :
     RecyclerView.Adapter<CategoriesAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         ViewHolder(
