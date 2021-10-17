@@ -6,6 +6,7 @@ import com.somethingsimple.publicapichooser.data.datasource.category.local.Local
 import com.somethingsimple.publicapichooser.data.datasource.category.local.LocalCategoryDataSourceImpl
 import com.somethingsimple.publicapichooser.data.datasource.category.remote.RemoteCategoryDataSource
 import com.somethingsimple.publicapichooser.data.db.ApiChooserDb
+import com.somethingsimple.publicapichooser.data.db.CategoryDao
 import com.somethingsimple.publicapichooser.data.repository.category.CategoryRepository
 import com.somethingsimple.publicapichooser.data.repository.category.CategoryRepositoryImpl
 import com.somethingsimple.publicapichooser.data.vo.Category
@@ -47,7 +48,7 @@ class CategoryModule {
     @Singleton
     @Provides
     fun provideLocalCategoryDataSource(
-        db: ApiChooserDb
+        dao: CategoryDao
     ): LocalCategoryDataSource =
-        LocalCategoryDataSourceImpl(db)
+        LocalCategoryDataSourceImpl(dao)
 }

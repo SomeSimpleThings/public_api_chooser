@@ -5,7 +5,7 @@ import com.somethingsimple.publicapichooser.data.datasource.publicapi.PublicApiD
 import com.somethingsimple.publicapichooser.data.datasource.publicapi.local.LocalPublicApiDataSource
 import com.somethingsimple.publicapichooser.data.datasource.publicapi.local.LocalPublicApiDataSourceImpl
 import com.somethingsimple.publicapichooser.data.datasource.publicapi.remote.RemotePublicApiDataSource
-import com.somethingsimple.publicapichooser.data.db.ApiChooserDb
+import com.somethingsimple.publicapichooser.data.db.PublicApiDao
 import com.somethingsimple.publicapichooser.data.repository.publicapi.PublicApiRepository
 import com.somethingsimple.publicapichooser.data.repository.publicapi.PublicApiRepositoryImpl
 import com.somethingsimple.publicapichooser.di.module.DbModule
@@ -31,6 +31,6 @@ class PublicApiModule {
 
     @Singleton
     @Provides
-    fun provideLocalPublicAPiDataSource(db: ApiChooserDb): LocalPublicApiDataSource =
-        LocalPublicApiDataSourceImpl(db)
+    fun provideLocalPublicAPiDataSource(dao: PublicApiDao): LocalPublicApiDataSource =
+        LocalPublicApiDataSourceImpl(dao)
 }

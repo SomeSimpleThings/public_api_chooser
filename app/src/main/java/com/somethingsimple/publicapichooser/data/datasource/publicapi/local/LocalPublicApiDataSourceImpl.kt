@@ -1,12 +1,11 @@
 package com.somethingsimple.publicapichooser.data.datasource.publicapi.local
 
-import com.somethingsimple.publicapichooser.data.db.ApiChooserDb
 import com.somethingsimple.publicapichooser.data.db.PublicApiDao
 import com.somethingsimple.publicapichooser.data.vo.ApiEntry
 import io.reactivex.rxjava3.core.Single
 
-class LocalPublicApiDataSourceImpl(db: ApiChooserDb) : LocalPublicApiDataSource {
-    private val publicApiDao: PublicApiDao = db.publicApiDao()
+class LocalPublicApiDataSourceImpl(private val publicApiDao: PublicApiDao) :
+    LocalPublicApiDataSource {
     override fun retain(categoryName: String, apis: List<ApiEntry>): Single<List<ApiEntry>> =
         publicApiDao
             .retain(apis)

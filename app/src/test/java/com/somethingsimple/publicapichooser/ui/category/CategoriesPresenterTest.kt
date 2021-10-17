@@ -8,7 +8,7 @@ import com.somethingsimple.publicapichooser.ui.IScreens
 import com.somethingsimple.publicapichooser.ui.common.ListPresenter
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
-import org.junit.Assert
+import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mock
@@ -94,6 +94,7 @@ class CategoriesPresenterTest {
     fun onDestroy() {
         categoriesPresenter.onDestroy()
         verify(compositeDisposable, only()).dispose()
+        assertEquals(compositeDisposable.size(), 0)
     }
 
     @Test

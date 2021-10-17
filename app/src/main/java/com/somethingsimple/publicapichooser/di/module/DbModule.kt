@@ -16,4 +16,12 @@ class DbModule {
             .databaseBuilder(context, ApiChooserDb::class.java, "public_api.db")
             .fallbackToDestructiveMigration()
             .build()
+
+    @Singleton
+    @Provides
+    fun provideCategoryDao(database: ApiChooserDb) = database.categoriesDao()
+
+    @Singleton
+    @Provides
+    fun provideApiEntryDao(database: ApiChooserDb) = database.publicApiDao()
 }
