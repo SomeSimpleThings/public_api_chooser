@@ -6,13 +6,13 @@ plugins {
 }
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.3"
+    compileSdkVersion 31
+    buildToolsVersion '31.0.0'
 
     defaultConfig {
         applicationId "com.somethingsimple.publicapichooser"
         minSdkVersion 21
-        targetSdkVersion 30
+        targetSdkVersion 31
         versionCode 1
         versionName "1.0"
 
@@ -41,19 +41,18 @@ android {
 dependencies {
 
     def moxy_version = "2.2.2"
-    def cicerone_version = "7.0"
+    def cicerone_version = "7.1"
     def retrofit_version = "2.9.0"
     def okhttp_version = "4.9.1"
     def room_version = "2.3.0"
-    def dagger_version = '2.37'
+    def dagger_version = '2.38.1'
 
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.6.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.appcompat:appcompat:1.3.0'
-    implementation 'com.google.android.material:material:1.3.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'androidx.appcompat:appcompat:1.3.1'
+    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.1'
     //moxy
     implementation "com.github.moxy-community:moxy:$moxy_version"
     implementation "com.github.moxy-community:moxy-ktx:$moxy_version"
@@ -84,7 +83,12 @@ dependencies {
     implementation "com.google.dagger:dagger-android-support:$dagger_version"
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
     kapt "com.google.dagger:dagger-android-processor:$dagger_version"
+
     testImplementation 'junit:junit:4.13.2'
+    testImplementation "org.mockito:mockito-core:4.0.0"
+    testImplementation "org.mockito.kotlin:mockito-kotlin:4.0.0"
+    testImplementation 'org.mockito:mockito-inline:4.0.0'
+
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 }
