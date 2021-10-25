@@ -20,7 +20,8 @@ class ApiDetailsFragment : BaseFragment(R.layout.fragment_api_details), ApiDetai
     BackButtonListener {
 
     private var viewBinding: FragmentApiDetailsBinding? = null
-    private val id: Long by lazy {
+
+    val apiId: Long by lazy {
         arguments?.getLong(ARG_API_ID) ?: 0L
     }
 
@@ -28,7 +29,7 @@ class ApiDetailsFragment : BaseFragment(R.layout.fragment_api_details), ApiDetai
     lateinit var apiDetailsPresenterFactory: ApiDetailsPresenterFactory
 
     private val presenter: ApiDetailsPresenter by moxyPresenter {
-        apiDetailsPresenterFactory.create(id, ApiChooserScreens)
+        apiDetailsPresenterFactory.create(apiId, ApiChooserScreens)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
