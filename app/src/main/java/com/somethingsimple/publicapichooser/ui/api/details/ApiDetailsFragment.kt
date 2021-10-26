@@ -67,7 +67,7 @@ class ApiDetailsFragment : BaseFragment(R.layout.fragment_api_details), ApiDetai
 
     override fun showDetails(apiEntry: ApiEntry) {
         viewBinding?.apply {
-            apiCategory.text = apiEntry.category
+            apiCategoryL.text = apiEntry.category
             apiAuth.text = apiEntry.auth
             apiDescription.text = apiEntry.description
             apiName.text = apiEntry.api
