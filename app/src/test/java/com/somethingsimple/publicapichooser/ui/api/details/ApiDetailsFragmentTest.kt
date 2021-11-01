@@ -56,7 +56,7 @@ class ApiDetailsFragmentTest {
         )
         scenario.onFragment {
             it.showDetails(apiEntry)
-            onView(withId(R.id.api_category)).check(matches(withText(apiEntry.category)))
+            onView(withId(R.id.api_category_l)).check(matches(withText(apiEntry.category)))
             onView(withId(R.id.api_auth)).check(matches(withText(apiEntry.auth)))
             onView(withId(R.id.api_description)).check(matches(withText(apiEntry.description)))
             onView(withId(R.id.api_name)).check(matches(withText(apiEntry.api)))

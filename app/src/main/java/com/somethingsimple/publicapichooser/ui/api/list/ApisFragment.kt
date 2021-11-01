@@ -23,7 +23,7 @@ class ApisFragment : BaseFragment(R.layout.fragment_apis),
 
     private var viewBinding: FragmentApisBinding? = null
 
-    private val category: String by lazy {
+    val category: String by lazy {
         arguments?.getString(ARG_CATEGORY) ?: ""
     }
 
