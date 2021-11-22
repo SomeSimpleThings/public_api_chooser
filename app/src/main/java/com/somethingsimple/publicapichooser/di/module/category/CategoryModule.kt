@@ -6,16 +6,26 @@ import com.somethingsimple.publicapichooser.data.datasource.category.local.Local
 import com.somethingsimple.publicapichooser.data.datasource.category.local.LocalCategoryDataSourceImpl
 import com.somethingsimple.publicapichooser.data.datasource.category.remote.RemoteCategoryDataSource
 import com.somethingsimple.publicapichooser.data.db.ApiChooserDb
+import com.somethingsimple.publicapichooser.data.db.CategoryDao
 import com.somethingsimple.publicapichooser.data.repository.category.CategoryRepository
 import com.somethingsimple.publicapichooser.data.repository.category.CategoryRepositoryImpl
+import com.somethingsimple.publicapichooser.data.vo.Category
 import com.somethingsimple.publicapichooser.di.module.DbModule
 import com.somethingsimple.publicapichooser.di.module.NetworkModule
+import com.somethingsimple.publicapichooser.ui.category.CategoryItemView
+import com.somethingsimple.publicapichooser.ui.category.CategoryListPresenter
+import com.somethingsimple.publicapichooser.ui.common.ListPresenter
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
 
 @Module(includes = [CategoryUiModule::class, NetworkModule::class, DbModule::class])
 class CategoryModule {
+
+    @Singleton
+    @Provides
+    fun provideCategoryListPresenter(): ListPresenter<CategoryItemView, Category> =
+        CategoryListPresenter()
 
     @Singleton
     @Provides
@@ -38,7 +48,7 @@ class CategoryModule {
     @Singleton
     @Provides
     fun provideLocalCategoryDataSource(
-        db: ApiChooserDb
+        dao: CategoryDao
     ): LocalCategoryDataSource =
-        LocalCategoryDataSourceImpl(db)
+        LocalCategoryDataSourceImpl(dao)
 }

@@ -8,11 +8,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.terrakok.cicerone.Router
 import com.somethingsimple.publicapichooser.R
 import com.somethingsimple.publicapichooser.data.repository.category.CategoryRepository
+import com.somethingsimple.publicapichooser.data.vo.Category
 import com.somethingsimple.publicapichooser.databinding.FragmentCategoriesBinding
-import com.somethingsimple.publicapichooser.ui.ApiChooserScreens
 import com.somethingsimple.publicapichooser.schedulers.Schedulers
+import com.somethingsimple.publicapichooser.ui.ApiChooserScreens
 import com.somethingsimple.publicapichooser.ui.common.BackButtonListener
 import com.somethingsimple.publicapichooser.ui.common.BaseFragment
+import com.somethingsimple.publicapichooser.ui.common.ListPresenter
 import moxy.ktx.moxyPresenter
 import javax.inject.Inject
 
@@ -32,11 +34,15 @@ class CategoriesFragment : BaseFragment(R.layout.fragment_categories),
     @Inject
     lateinit var schedulers: Schedulers
 
+    @Inject
+    lateinit var categoryListPresenter: ListPresenter<CategoryItemView, Category>
+
 
     private var adapter: CategoriesAdapter? = null
     private val presenter: CategoriesPresenter by moxyPresenter {
         CategoriesPresenter(
             categoryRepository,
+            categoryListPresenter,
             router,
             schedulers,
             ApiChooserScreens
@@ -68,12 +74,11 @@ class CategoriesFragment : BaseFragment(R.layout.fragment_categories),
     }
 
     override fun init() {
-        adapter = CategoriesAdapter(presenter.categoryListPresenter)
+        adapter = CategoriesAdapter(categoryListPresenter)
         viewBinding?.rvCategories?.also {
             it.layoutManager = LinearLayoutManager(context)
             it.adapter = adapter
         }
-
     }
 
     override fun updateList() {
