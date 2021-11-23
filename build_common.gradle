@@ -5,27 +5,12 @@ android {
     buildToolsVersion build_tools_version
 
     defaultConfig {
-        applicationId application_id
         minSdkVersion min_sdk_version
         targetSdkVersion compile_sdk_version
         versionCode version_code
         versionName version_name
 
         testInstrumentationRunner test_instrumentation_runner
-    }
-
-    buildTypes {
-        release {
-            minifyEnabled true
-            shrinkResources true
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-        debug {
-            minifyEnabled false
-            shrinkResources false
-
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
     }
 
     compileOptions {

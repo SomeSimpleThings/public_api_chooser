@@ -9,31 +9,29 @@ apply from: "$project.rootDir/build_common.gradle"
 dependencies {
 
     api project(':core_api')
-    def dagger_version = '2.40'
-    def retrofit_version = "2.9.0"
-    def okhttp_version = "4.9.1"
-    def cicerone_version = "7.1"
+    implementation(
 
-    //Dagger
-    implementation "com.google.dagger:dagger:$dagger_version"
-    kapt "com.google.dagger:dagger-compiler:$dagger_version"
+            core_ktx,
+            //cicerone
+            cicerone,
+            //retrofit
+            retrofit,
+            retrofit_gson_converter,
+            retrofit_rxjava_adapter,
+            //OkHTTP
+            platform(okhttp_bom),
+            okhttp,
+            okhttp_logging,
+            //Dagger
+            dagger
+    )
+    kapt(
+            dagger_kapt)
 
-    //OkHTTP
-    implementation(platform("com.squareup.okhttp3:okhttp-bom:$okhttp_version"))
-    implementation "com.squareup.okhttp3:okhttp"
-    implementation "com.squareup.okhttp3:logging-interceptor"
-
-    //retrofit
-    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
-    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
-    implementation "com.squareup.retrofit2:adapter-rxjava3:$retrofit_version"
-    //cicerone
-    implementation "com.github.terrakok:cicerone:$cicerone_version"
-
-    implementation 'androidx.core:core-ktx:1.6.0'
-    implementation 'androidx.appcompat:appcompat:1.3.1'
-    implementation 'com.google.android.material:material:1.4.0'
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    testImplementation(
+            junit)
+    androidTestImplementation(
+            androidx_test_ext,
+            androidx_test_espresso_core
+    )
 }

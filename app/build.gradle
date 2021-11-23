@@ -5,66 +5,89 @@ plugins {
 
 }
 apply from: "$project.rootDir/build_common.gradle"
+android {
+    defaultConfig {
+        applicationId application_id
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled false
+            shrinkResources false
+
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
 dependencies {
 
     implementation project(path: ':core')
 
+    implementation(
 
-    implementation 'androidx.core:core-ktx:1.6.0'
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.appcompat:appcompat:1.3.1'
-    implementation 'com.google.android.material:material:1.4.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.2'
-    //moxy
-    implementation "com.github.moxy-community:moxy:$moxy_version"
-    implementation "com.github.moxy-community:moxy-ktx:$moxy_version"
-    implementation "com.github.moxy-community:moxy-androidx:$moxy_version"
-    kapt "com.github.moxy-community:moxy-compiler:$moxy_version"
-    //cicerone
-    implementation "com.github.terrakok:cicerone:$cicerone_version"
-    //RxJava
-    implementation 'io.reactivex.rxjava3:rxjava:3.0.13'
-    implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
-    //retrofit
-    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
-    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
-    implementation "com.squareup.retrofit2:adapter-rxjava3:$retrofit_version"
-    //Glide
-    implementation 'com.github.bumptech.glide:glide:4.12.0'
-    //OkHTTP
-    implementation(platform("com.squareup.okhttp3:okhttp-bom:$okhttp_version"))
-    implementation "com.squareup.okhttp3:okhttp"
-    implementation "com.squareup.okhttp3:logging-interceptor"
-    //Room
-    implementation "androidx.room:room-runtime:$room_version"
-    kapt "androidx.room:room-compiler:$room_version"
-    implementation "androidx.room:room-rxjava3:$room_version"
-    //Dagger
-    implementation "com.google.dagger:dagger:$dagger_version"
-    kapt "com.google.dagger:dagger-compiler:$dagger_version"
-    kapt "com.google.dagger:dagger-android-processor:$dagger_version"
+            core_ktx,
+            android_legacy_support,
+            android_appcompat,
+            android_material,
+            android_constraint_layout,
+            //moxy
+            moxy,
+            moxy_ktx,
+            moxy_android,
+            //cicerone
+            cicerone,
+            //RxJava
+            rxjava,
+            rxjava_android,
+            //retrofit
+            retrofit,
+            retrofit_gson_converter,
+            retrofit_rxjava_adapter,
+            //Glide
+            glide,
+            //OkHTTP
+            platform(okhttp_bom),
+            okhttp,
+            okhttp_logging,
+            //Room
+            room_runtime,
+            room_rxjava,
+            //Dagger
+            dagger
+    )
 
-    testImplementation 'junit:junit:4.13.2'
-    testImplementation "org.mockito:mockito-core:$mockito_version"
-    testImplementation "org.mockito.kotlin:mockito-kotlin:$mockito_version"
-    testImplementation "org.mockito:mockito-inline:$mockito_version"
-    debugImplementation 'androidx.fragment:fragment-testing:1.3.6'
+    kapt(
+            moxy_kapt,
+            room_kapt,
+            dagger_kapt)
 
+    testImplementation(
+            junit,
+            mockito_core,
+            mockito_kotlin,
+            mockito_inline,
+            robolectric,
+            test_core,
+            test_runner,
+            test_ext_junit,
+            test_ext_truth,
+            espresso_core,
+            espresso_intents
+    )
+    debugImplementation fragment_testing
 
-    testImplementation 'org.robolectric:robolectric:4.6'
-    testImplementation 'androidx.test:core:1.4.0'
-    testImplementation 'androidx.test:runner:1.4.0'
-    testImplementation 'androidx.test.ext:junit:1.1.3'
-    testImplementation 'androidx.test.ext:truth:1.4.0'
-
-    testImplementation "androidx.test.espresso:espresso-core:$espresso_version"
-    testImplementation "androidx.test.espresso:espresso-intents:$espresso_version"
-
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test:runner:1.4.0'
-    androidTestImplementation 'androidx.test:rules:1.4.0'
-    androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_version"
-    androidTestImplementation "androidx.test.espresso:espresso-intents:$espresso_version"
-    androidTestImplementation 'androidx.test.uiautomator:uiautomator:2.2.0'
+    androidTestImplementation(
+            androidx_test_ext,
+            androidx_test_runner,
+            androidx_test_rules,
+            androidx_test_espresso_core,
+            androidx_test_espresso_intents,
+            androidx_uiautomator
+    )
 
 }
