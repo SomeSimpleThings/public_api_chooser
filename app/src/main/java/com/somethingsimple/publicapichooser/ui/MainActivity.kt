@@ -4,21 +4,24 @@ import android.os.Bundle
 import com.github.terrakok.cicerone.NavigatorHolder
 import com.github.terrakok.cicerone.Router
 import com.github.terrakok.cicerone.androidx.AppNavigator
+import com.somethingsimple.publicapichooser.ApiChooserApp
 import com.somethingsimple.publicapichooser.R
+import com.somethingsimple.publicapichooser.di.component.MainComponent
 import com.somethingsimple.publicapichooser.ui.common.BackButtonListener
 import moxy.MvpAppCompatActivity
+import javax.inject.Inject
 
 class MainActivity : MvpAppCompatActivity(R.layout.activity_main) {
     private val navigator = AppNavigator(this, R.id.container)
 
-    //    @Inject
+    @Inject
     lateinit var router: Router
 
-    //    @Inject
+    @Inject
     lateinit var navigatorHolder: NavigatorHolder
 
     override fun onCreate(savedInstanceState: Bundle?) {
-//        MainComponent.create((application as ApiChooserApp).getAppComponent())
+        MainComponent.create((application as ApiChooserApp).getComponent()).inject(this)
         super.onCreate(savedInstanceState)
         savedInstanceState ?: router.newRootScreen(ApiChooserScreens.categories())
     }
