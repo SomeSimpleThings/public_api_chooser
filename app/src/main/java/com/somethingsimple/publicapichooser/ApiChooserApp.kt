@@ -1,23 +1,31 @@
 package com.somethingsimple.publicapichooser
 
-import com.github.terrakok.cicerone.Cicerone
-import com.somethingsimple.publicapichooser.di.DaggerApiChooserComponent
-import com.somethingsimple.publicapichooser.schedulers.DefaultSchedulers
-import dagger.android.AndroidInjector
-import dagger.android.DaggerApplication
+import android.app.Application
+import com.somethingsimple.core_api.di.provider.AppWithComponent
+import com.somethingsimple.core_api.di.provider.CoreProvider
+import com.somethingsimple.publicapichooser.di.component.AppComponent
 
-class ApiChooserApp : DaggerApplication() {
+class ApiChooserApp : Application(), AppWithComponent {
 
-    override fun applicationInjector(): AndroidInjector<out DaggerApplication> =
-        DaggerApiChooserComponent
-            .builder()
-            .withContext(applicationContext)
-            .apply {
-                val cicerone = Cicerone.create()
-                withRouter(cicerone.router)
-                withNavigatorHolder(cicerone.getNavigatorHolder())
+    companion object {
+        private var appComponent: AppComponent? = null
+    }
+
+
+    override fun onCreate() {
+        super.onCreate()
+        getAppComponent().inject(this)
+    }
+
+    fun getAppComponent(): AppComponent {
+        return appComponent
+            ?: AppComponent.create(this).also {
+                appComponent = it
             }
-            .withSchedulers(DefaultSchedulers)
-            .build()
+    }
+
+    override fun getComponent(): CoreProvider {
+        TODO("Not yet implemented")
+    }
 
 }

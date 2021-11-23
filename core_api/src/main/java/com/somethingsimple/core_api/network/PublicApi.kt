@@ -1,11 +1,11 @@
-package com.somethingsimple.publicapichooser.data.api
+package com.somethingsimple.core_api.network
 
-import com.somethingsimple.publicapichooser.data.vo.PublicApiEntries
+import com.somethingsimple.core_api.network.dto.PublicApiEntries
 import io.reactivex.rxjava3.core.Single
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-interface PublicApisApi {
+interface PublicApi {
     @GET("/categories")
     fun getCategories(): Single<List<String>>
 
