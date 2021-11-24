@@ -1,8 +1,8 @@
 package com.somethingsimple.publicapichooser.data.repository.category
 
-import com.somethingsimple.publicapichooser.data.datasource.category.CategoryDataSource
-import com.somethingsimple.publicapichooser.data.datasource.category.local.LocalCategoryDataSource
-import com.somethingsimple.publicapichooser.data.vo.Category
+import com.somethingsimple.core_api.data.vo.Category
+import com.somethingsimple.core_api.datasource.category.CategoryDataSource
+import com.somethingsimple.core_api.datasource.category.local.LocalCategoryDataSource
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 

@@ -9,7 +9,7 @@ import com.somethingsimple.publicapichooser.ui.category.CategoriesFragment
 interface IScreens {
     fun categories(): Screen
     fun apis(categoryName: String): Screen
-    fun apiDetails(id: Long): Screen
+    fun apiDetails(api: String): Screen
 
 }
 
@@ -19,7 +19,7 @@ object ApiChooserScreens : IScreens {
     override fun apis(categoryName: String): Screen =
         FragmentScreen { ApisFragment.newInstance(categoryName) }
 
-    override fun apiDetails(id: Long): Screen {
-        return FragmentScreen { ApiDetailsFragment.newInstance(id) }
+    override fun apiDetails(api: String): Screen {
+        return FragmentScreen { ApiDetailsFragment.newInstance(api) }
     }
 }

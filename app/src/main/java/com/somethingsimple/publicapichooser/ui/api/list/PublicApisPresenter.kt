@@ -1,9 +1,9 @@
 package com.somethingsimple.publicapichooser.ui.api.list
 
 import com.github.terrakok.cicerone.Router
+import com.somethingsimple.core_api.data.vo.ApiEntry
 import com.somethingsimple.publicapichooser.data.repository.publicapi.PublicApiRepository
-import com.somethingsimple.publicapichooser.data.vo.ApiEntry
-import com.somethingsimple.publicapichooser.schedulers.Schedulers
+import com.somethingsimple.publicapichooser.schedulers.DefaultSchedulersImpl
 import com.somethingsimple.publicapichooser.ui.IScreens
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
@@ -15,7 +15,7 @@ class PublicApisPresenter @AssistedInject constructor(
     @Assisted("screens") private val screens: IScreens,
     private val publicApiRepository: PublicApiRepository,
     private val router: Router,
-    private val schedulers: Schedulers
+    private val schedulers: DefaultSchedulersImpl
 ) :
     MvpPresenter<PublicApisView>() {
     class PublicApisListPresenterImpl : PublicApiListPresenter {
@@ -47,7 +47,7 @@ class PublicApisPresenter @AssistedInject constructor(
         loadData()
         apiListPresenter.itemClickListener = { itemView ->
             val apiEntry = apiListPresenter.apis[itemView.pos]
-            router.navigateTo(screens.apiDetails(apiEntry.id))
+            router.navigateTo(screens.apiDetails(apiEntry.api))
         }
     }
 

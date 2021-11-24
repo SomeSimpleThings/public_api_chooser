@@ -5,8 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import com.somethingsimple.core_api.data.vo.ApiEntry
 import com.somethingsimple.publicapichooser.R
-import com.somethingsimple.publicapichooser.data.vo.ApiEntry
 import com.somethingsimple.publicapichooser.databinding.FragmentApiDetailsBinding
 import com.somethingsimple.publicapichooser.ui.ApiChooserScreens
 import com.somethingsimple.publicapichooser.ui.common.BackButtonListener
@@ -21,15 +21,15 @@ class ApiDetailsFragment : BaseFragment(R.layout.fragment_api_details), ApiDetai
 
     private var viewBinding: FragmentApiDetailsBinding? = null
 
-    val apiId: Long by lazy {
-        arguments?.getLong(ARG_API_ID) ?: 0L
+    val api: String by lazy {
+        arguments?.getString(ARG_API_ID) ?: ""
     }
 
     @Inject
     lateinit var apiDetailsPresenterFactory: ApiDetailsPresenterFactory
 
     private val presenter: ApiDetailsPresenter by moxyPresenter {
-        apiDetailsPresenterFactory.create(apiId, ApiChooserScreens)
+        apiDetailsPresenterFactory.create(api, ApiChooserScreens)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,10 +48,10 @@ class ApiDetailsFragment : BaseFragment(R.layout.fragment_api_details), ApiDetai
 
     companion object {
 
-        fun newInstance(id: Long) =
+        fun newInstance(api: String) =
             ApiDetailsFragment().apply {
                 arguments = Bundle().apply {
-                    putLong(ARG_API_ID, id)
+                    putString(ARG_API_ID, api)
                 }
             }
     }

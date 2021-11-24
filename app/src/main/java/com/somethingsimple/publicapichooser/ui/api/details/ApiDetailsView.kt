@@ -1,6 +1,6 @@
 package com.somethingsimple.publicapichooser.ui.api.details
 
-import com.somethingsimple.publicapichooser.data.vo.ApiEntry
+import com.somethingsimple.core_api.data.vo.ApiEntry
 import moxy.MvpView
 import moxy.viewstate.strategy.AddToEndSingleStrategy
 import moxy.viewstate.strategy.StateStrategyType

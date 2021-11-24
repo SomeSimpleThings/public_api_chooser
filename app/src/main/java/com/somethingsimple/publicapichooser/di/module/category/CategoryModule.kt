@@ -1,15 +1,12 @@
 package com.somethingsimple.publicapichooser.di.module.category
 
-import com.somethingsimple.publicapichooser.data.api.PublicApisApi
-import com.somethingsimple.publicapichooser.data.datasource.category.CategoryDataSource
-import com.somethingsimple.publicapichooser.data.datasource.category.local.LocalCategoryDataSource
-import com.somethingsimple.publicapichooser.data.datasource.category.local.LocalCategoryDataSourceImpl
-import com.somethingsimple.publicapichooser.data.datasource.category.remote.RemoteCategoryDataSource
-import com.somethingsimple.publicapichooser.data.db.ApiChooserDb
-import com.somethingsimple.publicapichooser.data.db.CategoryDao
+import com.somethingsimple.core_api.data.db.CategoryDao
+import com.somethingsimple.core_api.data.vo.Category
+import com.somethingsimple.core_api.datasource.category.CategoryDataSource
+import com.somethingsimple.core_api.datasource.category.local.LocalCategoryDataSource
+import com.somethingsimple.core_api.datasource.category.local.LocalCategoryDataSourceImpl
 import com.somethingsimple.publicapichooser.data.repository.category.CategoryRepository
 import com.somethingsimple.publicapichooser.data.repository.category.CategoryRepositoryImpl
-import com.somethingsimple.publicapichooser.data.vo.Category
 import com.somethingsimple.publicapichooser.di.module.DbModule
 import com.somethingsimple.publicapichooser.di.module.NetworkModule
 import com.somethingsimple.publicapichooser.ui.category.CategoryItemView
@@ -19,7 +16,7 @@ import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
 
-@Module(includes = [CategoryUiModule::class, NetworkModule::class, DbModule::class])
+@Module(includes = [NetworkModule::class, DbModule::class])
 class CategoryModule {
 
     @Singleton
@@ -38,12 +35,12 @@ class CategoryModule {
             localCategoryDataSource
         )
 
-    @Singleton
-    @Provides
-    fun provideRemoteCategoryDataSource(
-        publicApisApi: PublicApisApi
-    ): CategoryDataSource =
-        RemoteCategoryDataSource(publicApisApi)
+//    @Singleton
+//    @Provides
+//    fun provideRemoteCategoryDataSource(
+//        publicApisApi: PublicApisApi
+//    ): CategoryDataSource =
+//        RemoteCategoryDataSource(publicApisApi)
 
     @Singleton
     @Provides

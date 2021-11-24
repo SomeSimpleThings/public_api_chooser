@@ -1,8 +1,8 @@
 package com.somethingsimple.publicapichooser.data.repository.publicapi
 
-import com.somethingsimple.publicapichooser.data.datasource.publicapi.PublicApiDataSource
-import com.somethingsimple.publicapichooser.data.datasource.publicapi.local.LocalPublicApiDataSource
-import com.somethingsimple.publicapichooser.data.vo.ApiEntry
+import com.somethingsimple.core_api.data.vo.ApiEntry
+import com.somethingsimple.core_api.datasource.publicapi.PublicApiDataSource
+import com.somethingsimple.core_api.datasource.publicapi.local.LocalPublicApiDataSource
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 

@@ -1,9 +1,9 @@
 package com.somethingsimple.publicapichooser.ui.category
 
 import com.github.terrakok.cicerone.Router
+import com.somethingsimple.core_api.data.vo.Category
 import com.somethingsimple.publicapichooser.data.repository.category.CategoryRepository
-import com.somethingsimple.publicapichooser.data.vo.Category
-import com.somethingsimple.publicapichooser.schedulers.Schedulers
+import com.somethingsimple.publicapichooser.schedulers.DefaultSchedulersImpl
 import com.somethingsimple.publicapichooser.ui.IScreens
 import com.somethingsimple.publicapichooser.ui.common.ListPresenter
 import io.reactivex.rxjava3.disposables.CompositeDisposable
@@ -13,7 +13,7 @@ class CategoriesPresenter(
     private val categoryRepository: CategoryRepository,
     private var categoryListPresenter: ListPresenter<CategoryItemView, Category>,
     private val router: Router,
-    private val schedulers: Schedulers,
+    private val schedulers: DefaultSchedulersImpl,
     private val appScreens: IScreens,
     private val compositeDisposable: CompositeDisposable = CompositeDisposable()
 

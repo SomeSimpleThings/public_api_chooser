@@ -5,12 +5,12 @@ import com.somethingsimple.core.CoreProviderFactory
 import com.somethingsimple.core_api.di.provider.AppProvider
 import com.somethingsimple.core_api.di.provider.CoreProvider
 import com.somethingsimple.core_api.di.provider.NavigationProvider
-import com.somethingsimple.core_api.di.provider.NetworkProvider
+import com.somethingsimple.core_api.di.provider.NetworkDataSourceProvider
 import dagger.Component
 
 
 @Component(
-    dependencies = [NetworkProvider::class, AppProvider::class, NavigationProvider::class]
+    dependencies = [NetworkDataSourceProvider::class, AppProvider::class, NavigationProvider::class]
 )
 interface CoreComponent : CoreProvider {
 
@@ -20,7 +20,7 @@ interface CoreComponent : CoreProvider {
             return DaggerCoreComponent
                 .builder()
                 .appProvider(AppComponent.create(application))
-                .networkProvider(CoreProviderFactory.createNetworkProvider())
+                .networkDataSourceProvider(CoreProviderFactory.createNetworkProvider())
                 .navigationProvider(CoreProviderFactory.createNavigationProvider())
                 .build()
 

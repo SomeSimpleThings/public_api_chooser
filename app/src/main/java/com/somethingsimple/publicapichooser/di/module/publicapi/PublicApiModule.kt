@@ -1,11 +1,11 @@
 package com.somethingsimple.publicapichooser.di.module.publicapi
 
-import com.somethingsimple.publicapichooser.data.api.PublicApisApi
-import com.somethingsimple.publicapichooser.data.datasource.publicapi.PublicApiDataSource
-import com.somethingsimple.publicapichooser.data.datasource.publicapi.local.LocalPublicApiDataSource
-import com.somethingsimple.publicapichooser.data.datasource.publicapi.local.LocalPublicApiDataSourceImpl
-import com.somethingsimple.publicapichooser.data.datasource.publicapi.remote.RemotePublicApiDataSource
-import com.somethingsimple.publicapichooser.data.db.PublicApiDao
+import com.somethingsimple.core_api.data.db.PublicApiDao
+import com.somethingsimple.core_api.data.network.PublicApi
+import com.somethingsimple.core_api.datasource.publicapi.PublicApiDataSource
+import com.somethingsimple.core_api.datasource.publicapi.local.LocalPublicApiDataSource
+import com.somethingsimple.core_api.datasource.publicapi.local.LocalPublicApiDataSourceImpl
+import com.somethingsimple.core_api.datasource.publicapi.remote.RemotePublicApiDataSource
 import com.somethingsimple.publicapichooser.data.repository.publicapi.PublicApiRepository
 import com.somethingsimple.publicapichooser.data.repository.publicapi.PublicApiRepositoryImpl
 import com.somethingsimple.publicapichooser.di.module.DbModule
@@ -26,7 +26,7 @@ class PublicApiModule {
 
     @Singleton
     @Provides
-    fun provideRemotePublicApiDataSource(publicApisApi: PublicApisApi): PublicApiDataSource =
+    fun provideRemotePublicApiDataSource(publicApisApi: PublicApi): PublicApiDataSource =
         RemotePublicApiDataSource(publicApisApi)
 
     @Singleton

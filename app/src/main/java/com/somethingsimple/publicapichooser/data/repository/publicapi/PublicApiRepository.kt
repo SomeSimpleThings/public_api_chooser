@@ -1,6 +1,6 @@
 package com.somethingsimple.publicapichooser.data.repository.publicapi
 
-import com.somethingsimple.publicapichooser.data.vo.ApiEntry
+import com.somethingsimple.core_api.data.vo.ApiEntry
 import io.reactivex.rxjava3.core.Single
 
 interface PublicApiRepository {

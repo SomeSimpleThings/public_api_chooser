@@ -1,8 +1,6 @@
 package com.somethingsimple.publicapichooser.di.module
 
-import android.content.Context
-import com.somethingsimple.publicapichooser.R
-import com.somethingsimple.publicapichooser.data.api.PublicApisApi
+import com.somethingsimple.core_api.data.network.PublicApi
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -17,9 +15,9 @@ class NetworkModule {
 
     @Singleton
     @Provides
-    fun providePublicApisApi(context: Context): PublicApisApi =
+    fun providePublicApisApi(): PublicApi =
         Retrofit.Builder()
-            .baseUrl(context.getString(R.string.public_api_url))
+            .baseUrl("https://api.publicapis.org/")
             .client(
                 OkHttpClient.Builder()
                     .addInterceptor(HttpLoggingInterceptor().apply {
@@ -30,6 +28,6 @@ class NetworkModule {
             .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-            .create(PublicApisApi::class.java)
+            .create(PublicApi::class.java)
 
 }

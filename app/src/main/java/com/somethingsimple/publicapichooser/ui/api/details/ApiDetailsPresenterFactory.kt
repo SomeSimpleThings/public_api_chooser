@@ -8,7 +8,7 @@ import dagger.assisted.AssistedFactory
 @AssistedFactory
 interface ApiDetailsPresenterFactory {
     fun create(
-        @Assisted("id") id: Long,
+        @Assisted("id") id: String,
         @Assisted("screens") screens: IScreens
     ): ApiDetailsPresenter
 

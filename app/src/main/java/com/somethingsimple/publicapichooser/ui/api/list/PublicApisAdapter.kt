@@ -3,7 +3,7 @@ package com.somethingsimple.publicapichooser.ui.api.list
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.somethingsimple.publicapichooser.data.vo.ApiEntry
+import com.somethingsimple.core_api.data.vo.ApiEntry
 import com.somethingsimple.publicapichooser.databinding.PublicapiItemBinding
 
 class PublicApisAdapter(val presenter: PublicApiListPresenter) :

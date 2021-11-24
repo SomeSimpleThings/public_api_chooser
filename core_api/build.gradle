@@ -23,7 +23,14 @@ dependencies {
             okhttp,
             okhttp_logging,
             //Dagger
-            dagger
+            dagger,
+
+            //Room
+            room_runtime,
+            room_rxjava,
+
+            rxjava,
+            rxjava_android
     )
     kapt(
             dagger_kapt)

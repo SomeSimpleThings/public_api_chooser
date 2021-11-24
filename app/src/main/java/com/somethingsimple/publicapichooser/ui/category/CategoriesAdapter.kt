@@ -3,7 +3,7 @@ package com.somethingsimple.publicapichooser.ui.category
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.somethingsimple.publicapichooser.data.vo.Category
+import com.somethingsimple.core_api.data.vo.Category
 import com.somethingsimple.publicapichooser.databinding.CategoryItemBinding
 import com.somethingsimple.publicapichooser.ui.common.ListPresenter
 
