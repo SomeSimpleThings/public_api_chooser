@@ -7,6 +7,6 @@ import javax.inject.Singleton
 
 @Singleton
 @Component(modules = [NetworkDataSourceModule::class])
-interface NetworkComponent : NetworkDataSourceProvider {
+interface NetworkDataSourceComponent : NetworkDataSourceProvider {
 
 }

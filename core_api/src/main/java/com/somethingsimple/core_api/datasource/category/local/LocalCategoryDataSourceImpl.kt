@@ -4,8 +4,10 @@ import com.somethingsimple.core_api.data.db.CategoryDao
 import com.somethingsimple.core_api.data.db.entity.CategoryEntity
 import com.somethingsimple.core_api.data.vo.Category
 import io.reactivex.rxjava3.core.Single
+import javax.inject.Inject
 
-class LocalCategoryDataSourceImpl(private val categoryDao: CategoryDao) : LocalCategoryDataSource {
+class LocalCategoryDataSourceImpl @Inject constructor(private val categoryDao: CategoryDao) :
+    LocalCategoryDataSource {
 
 
     override fun retain(categories: List<Category>): Single<List<Category>> =

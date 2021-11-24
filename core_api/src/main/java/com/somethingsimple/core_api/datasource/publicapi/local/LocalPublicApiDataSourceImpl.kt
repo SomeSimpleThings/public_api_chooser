@@ -4,8 +4,9 @@ import com.somethingsimple.core_api.data.db.PublicApiDao
 import com.somethingsimple.core_api.data.db.entity.ApiEntryEntity
 import com.somethingsimple.core_api.data.vo.ApiEntry
 import io.reactivex.rxjava3.core.Single
+import javax.inject.Inject
 
-class LocalPublicApiDataSourceImpl(private val publicApiDao: PublicApiDao) :
+class LocalPublicApiDataSourceImpl @Inject constructor(private val publicApiDao: PublicApiDao) :
     LocalPublicApiDataSource {
     override fun retain(categoryName: String, apis: List<ApiEntry>): Single<List<ApiEntry>> =
         publicApiDao

@@ -1,4 +1,5 @@
 package com.somethingsimple.core_api.di.provider
 
-interface CoreProvider :  NetworkDataSourceProvider, NavigationProvider {
+interface CoreProvider : LocalDataSourceProvider,
+    NetworkDataSourceProvider, NavigationProvider {
 }

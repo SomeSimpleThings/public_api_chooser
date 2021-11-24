@@ -7,12 +7,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.terrakok.cicerone.Router
 import com.somethingsimple.core_api.data.vo.Category
-import com.somethingsimple.publicapichooser.ApiChooserApp
 import com.somethingsimple.publicapichooser.R
 import com.somethingsimple.publicapichooser.data.repository.category.CategoryRepository
 import com.somethingsimple.publicapichooser.databinding.FragmentCategoriesBinding
-import com.somethingsimple.publicapichooser.di.component.AppComponent
-import com.somethingsimple.publicapichooser.di.component.CategoryComponent
 import com.somethingsimple.publicapichooser.schedulers.DefaultSchedulersImpl
 import com.somethingsimple.publicapichooser.ui.ApiChooserScreens
 import com.somethingsimple.publicapichooser.ui.common.BackButtonListener
@@ -51,13 +48,6 @@ class CategoriesFragment : BaseFragment(R.layout.fragment_categories),
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        CategoryComponent
-            .create(
-                (requireActivity().application as ApiChooserApp)
-                    .getComponent(),
-                AppComponent.create(requireActivity().application as ApiChooserApp)
-            )
-            .inject(this)
         super.onCreate(savedInstanceState)
 
     }

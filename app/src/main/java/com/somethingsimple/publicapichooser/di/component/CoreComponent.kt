@@ -2,25 +2,29 @@ package com.somethingsimple.publicapichooser.di.component
 
 import android.app.Application
 import com.somethingsimple.core.CoreProviderFactory
-import com.somethingsimple.core_api.di.provider.AppProvider
-import com.somethingsimple.core_api.di.provider.CoreProvider
-import com.somethingsimple.core_api.di.provider.NavigationProvider
-import com.somethingsimple.core_api.di.provider.NetworkDataSourceProvider
+import com.somethingsimple.core_api.di.provider.*
 import dagger.Component
 
 
 @Component(
-    dependencies = [NetworkDataSourceProvider::class, AppProvider::class, NavigationProvider::class]
+    dependencies = [
+        LocalDataSourceProvider::class,
+        NetworkDataSourceProvider::class,
+        AppProvider::class,
+        NavigationProvider::class]
 )
 interface CoreComponent : CoreProvider {
 
     companion object {
         fun create(application: Application): CoreComponent {
 
+
+            val appComponent = AppComponent.create(application)
             return DaggerCoreComponent
                 .builder()
-                .appProvider(AppComponent.create(application))
+                .appProvider(appComponent)
                 .networkDataSourceProvider(CoreProviderFactory.createNetworkProvider())
+                .localDataSourceProvider(CoreProviderFactory.createLocalDSProvider(appComponent))
                 .navigationProvider(CoreProviderFactory.createNavigationProvider())
                 .build()
 

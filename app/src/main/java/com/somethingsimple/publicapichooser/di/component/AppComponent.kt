@@ -5,7 +5,6 @@ import android.content.Context
 import com.somethingsimple.core_api.di.provider.AppProvider
 import com.somethingsimple.publicapichooser.ApiChooserApp
 import com.somethingsimple.publicapichooser.di.module.AppModule
-import com.somethingsimple.publicapichooser.di.module.publicapi.PublicApiModule
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
@@ -15,7 +14,6 @@ import javax.inject.Singleton
 @Component(
     modules = [
         AppModule::class,
-        PublicApiModule::class
     ]
 )
 interface AppComponent : AppProvider {

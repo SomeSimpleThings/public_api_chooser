@@ -1,4 +1,4 @@
-package com.somethingsimple.publicapichooser.di.module
+package com.somethingsimple.core_impl.di.module
 
 import android.content.Context
 import androidx.room.Room
