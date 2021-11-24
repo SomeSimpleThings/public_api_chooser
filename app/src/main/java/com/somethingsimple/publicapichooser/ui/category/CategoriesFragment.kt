@@ -6,11 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.terrakok.cicerone.Router
+import com.somethingsimple.core_api.common.DefaultSchedulersImpl
 import com.somethingsimple.core_api.data.vo.Category
 import com.somethingsimple.publicapichooser.R
 import com.somethingsimple.publicapichooser.data.repository.category.CategoryRepository
 import com.somethingsimple.publicapichooser.databinding.FragmentCategoriesBinding
-import com.somethingsimple.publicapichooser.schedulers.DefaultSchedulersImpl
 import com.somethingsimple.publicapichooser.ui.ApiChooserScreens
 import com.somethingsimple.publicapichooser.ui.common.BackButtonListener
 import com.somethingsimple.publicapichooser.ui.common.BaseFragment

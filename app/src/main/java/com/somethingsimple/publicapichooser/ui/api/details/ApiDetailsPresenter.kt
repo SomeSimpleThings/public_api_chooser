@@ -1,9 +1,9 @@
 package com.somethingsimple.publicapichooser.ui.api.details
 
 import com.github.terrakok.cicerone.Router
+import com.somethingsimple.core_api.common.DefaultSchedulersImpl
 import com.somethingsimple.core_api.data.vo.ApiEntry
 import com.somethingsimple.publicapichooser.data.repository.publicapi.PublicApiRepository
-import com.somethingsimple.publicapichooser.schedulers.DefaultSchedulersImpl
 import com.somethingsimple.publicapichooser.ui.IScreens
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject

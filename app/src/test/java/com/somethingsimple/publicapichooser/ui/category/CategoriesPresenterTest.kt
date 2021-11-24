@@ -1,9 +1,9 @@
 package com.somethingsimple.publicapichooser.ui.category
 
 import com.github.terrakok.cicerone.Router
+import com.somethingsimple.core_api.common.DefaultSchedulersImpl
 import com.somethingsimple.core_api.data.vo.Category
 import com.somethingsimple.publicapichooser.data.repository.category.CategoryRepository
-import com.somethingsimple.publicapichooser.schedulers.DefaultSchedulersImpl
 import com.somethingsimple.publicapichooser.ui.IScreens
 import com.somethingsimple.publicapichooser.ui.common.ListPresenter
 import io.reactivex.rxjava3.core.Single
