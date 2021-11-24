@@ -27,4 +27,3 @@ task clean(type: Delete) {
 
 apply from: "$project.rootDir/dependencies.gradle"
 apply from: "$project.rootDir/build_config.gradle"
-//apply from: "$project.rootDir/build_common.gradle"

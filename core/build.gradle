@@ -22,9 +22,9 @@ dependencies {
     implementation core_ktx
     testImplementation(
             junit,
-            test_core,
-            test_runner,
-            test_ext_junit,
-            test_ext_truth
+//            test_core,
+//            test_runner,
+//            test_ext_junit,
+//            test_ext_truth
     )
 }

@@ -72,10 +72,10 @@ dependencies {
             mockito_kotlin,
             mockito_inline,
             robolectric,
-            test_core,
-            test_runner,
-            test_ext_junit,
-            test_ext_truth,
+//            test_core,
+//            test_runner,
+//            test_ext_junit,
+//            test_ext_truth,
             espresso_core,
             espresso_intents
     )
