@@ -1,37 +1,28 @@
 plugins {
-    id 'com.android.application'
+    id 'com.android.library'
     id 'kotlin-android'
     id 'kotlin-kapt'
 
 }
 apply from: "$project.rootDir/build_common.gradle"
+
 android {
-    defaultConfig {
-        applicationId application_id
-    }
 
     buildTypes {
         release {
-            minifyEnabled true
-            shrinkResources true
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-        debug {
             minifyEnabled false
-            shrinkResources false
-
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
 }
 dependencies {
 
-    implementation project(path: ':core')
-    implementation project(path: ':feature_api_details')
+    implementation project(':core')
 
     implementation(
             view_model,
             core_ktx,
+            fragment_ktx,
             android_legacy_support,
             android_appcompat,
             android_material,
@@ -41,26 +32,10 @@ dependencies {
             //RxJava
             rxjava,
             rxjava_android,
-            //retrofit
-            retrofit,
-            retrofit_gson_converter,
-            retrofit_rxjava_adapter,
-            //Glide
-            glide,
-            //OkHTTP
-            platform(okhttp_bom),
-            okhttp,
-            okhttp_logging,
-            //Room
-            room_runtime,
-            room_rxjava,
             //Dagger
             dagger
     )
-
     kapt(
-            moxy_kapt,
-            room_kapt,
             dagger_kapt)
 
     testImplementation(
@@ -68,7 +43,6 @@ dependencies {
             mockito_core,
             mockito_kotlin,
             mockito_inline,
-            robolectric,
             test_core,
             test_runner,
             test_ext_junit,
@@ -76,15 +50,10 @@ dependencies {
             espresso_core,
             espresso_intents
     )
-    debugImplementation fragment_testing
 
     androidTestImplementation(
             androidx_test_ext,
             androidx_test_runner,
             androidx_test_rules,
-            androidx_test_espresso_core,
-            androidx_test_espresso_intents,
-            androidx_uiautomator
     )
-
 }

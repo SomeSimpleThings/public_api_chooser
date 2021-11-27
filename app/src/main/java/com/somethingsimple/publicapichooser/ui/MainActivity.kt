@@ -5,7 +5,7 @@ import androidx.fragment.app.FragmentActivity
 import com.github.terrakok.cicerone.NavigatorHolder
 import com.github.terrakok.cicerone.Router
 import com.github.terrakok.cicerone.androidx.AppNavigator
-import com.somethingsimple.feature_api_list.ui.ApisFragment
+import com.somethingsimple.feature_api_details.ui.ApiDetailsFragment
 import com.somethingsimple.publicapichooser.ApiChooserApp
 import com.somethingsimple.publicapichooser.R
 import com.somethingsimple.publicapichooser.di.component.MainComponent
@@ -29,7 +29,7 @@ class MainActivity : FragmentActivity() {
 
     override fun onStart() {
         super.onStart()
-        val fragment = ApisFragment.newInstance("Anime")
+        val fragment = ApiDetailsFragment.newInstance("1")
         supportFragmentManager.beginTransaction().add(R.id.container, fragment).commit()
     }
 

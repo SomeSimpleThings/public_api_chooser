@@ -16,6 +16,10 @@ interface PublicApiDao {
     @Query("SELECT * FROM ApiEntryEntity WHERE id =:id")
     fun getPublicApiById(id: Long): Single<ApiEntryEntity>
 
+    @Query("SELECT * FROM ApiEntryEntity WHERE api =:name")
+    fun getPublicApiByName(name: String): Single<ApiEntryEntity>
+
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun retain(publicApis: List<ApiEntryEntity>): Completable
 

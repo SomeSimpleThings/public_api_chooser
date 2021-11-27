@@ -32,6 +32,9 @@ class LocalPublicApiDataSourceImpl @Inject constructor(private val publicApiDao:
     override fun getApiById(id: Long): Single<ApiEntry> =
         publicApiDao.getPublicApiById(id).map { ApiEntry(it) }
 
+    override fun getApiByName(name: String): Single<ApiEntry> =
+        publicApiDao.getPublicApiByName(name).map { ApiEntry(it) }
+
 
     override fun getApiByCategory(categoryName: String): Single<List<ApiEntry>> =
         publicApiDao.getPublicApisByCategory(categoryName)

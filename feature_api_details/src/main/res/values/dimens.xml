@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="api_item_size">140dp</dimen>
+    <dimen name="desc_text_size">24sp</dimen>
+    <dimen name="api_name_text_size">32sp</dimen>
+</resources>
