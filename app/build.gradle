@@ -27,18 +27,15 @@ android {
 dependencies {
 
     implementation project(path: ':core')
+    implementation project(path: ':feature_categories')
 
     implementation(
-
+            view_model,
             core_ktx,
             android_legacy_support,
             android_appcompat,
             android_material,
             android_constraint_layout,
-            //moxy
-            moxy,
-            moxy_ktx,
-            moxy_android,
             //cicerone
             cicerone,
             //RxJava

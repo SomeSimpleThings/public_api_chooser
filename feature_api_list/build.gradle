@@ -4,9 +4,17 @@ plugins {
     id 'kotlin-kapt'
 
 }
-
 apply from: "$project.rootDir/build_common.gradle"
 
+android {
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
 dependencies {
 
     implementation project(':core')

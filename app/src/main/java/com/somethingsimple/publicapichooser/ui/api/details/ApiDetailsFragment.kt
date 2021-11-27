@@ -4,19 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import com.somethingsimple.core_api.data.vo.ApiEntry
+import androidx.fragment.app.Fragment
 import com.somethingsimple.publicapichooser.R
 import com.somethingsimple.publicapichooser.databinding.FragmentApiDetailsBinding
-import com.somethingsimple.publicapichooser.ui.ApiChooserScreens
 import com.somethingsimple.publicapichooser.ui.common.BackButtonListener
-import com.somethingsimple.publicapichooser.ui.common.BaseFragment
-import moxy.ktx.moxyPresenter
-import javax.inject.Inject
 
 private const val ARG_API_ID = "api_id"
 
-class ApiDetailsFragment : BaseFragment(R.layout.fragment_api_details), ApiDetailsView,
+class ApiDetailsFragment : Fragment(R.layout.fragment_api_details),
     BackButtonListener {
 
     private var viewBinding: FragmentApiDetailsBinding? = null
@@ -25,12 +20,6 @@ class ApiDetailsFragment : BaseFragment(R.layout.fragment_api_details), ApiDetai
         arguments?.getString(ARG_API_ID) ?: ""
     }
 
-    @Inject
-    lateinit var apiDetailsPresenterFactory: ApiDetailsPresenterFactory
-
-    private val presenter: ApiDetailsPresenter by moxyPresenter {
-        apiDetailsPresenterFactory.create(api, ApiChooserScreens)
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,23 +50,5 @@ class ApiDetailsFragment : BaseFragment(R.layout.fragment_api_details), ApiDetai
         viewBinding = null
     }
 
-    override fun init() {
-        TODO("Not yet implemented")
-    }
-
-    override fun showDetails(apiEntry: ApiEntry) {
-        viewBinding?.apply {
-            apiCategoryL.text = apiEntry.category
-            apiAuth.text = apiEntry.auth
-            apiDescription.text = apiEntry.description
-            apiName.text = apiEntry.api
-            apiUrl.text = apiEntry.link
-        }
-    }
-
-    override fun showError(message: String?) {
-        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
-    }
-
-    override fun backPressed(): Boolean = presenter.backPressed()
+    override fun backPressed(): Boolean = true
 }

@@ -1,17 +1,17 @@
 package com.somethingsimple.publicapichooser.ui
 
 import android.os.Bundle
+import androidx.fragment.app.FragmentActivity
 import com.github.terrakok.cicerone.NavigatorHolder
 import com.github.terrakok.cicerone.Router
 import com.github.terrakok.cicerone.androidx.AppNavigator
+import com.somethingsimple.feature_categories.ui.category.CategoriesFragment
 import com.somethingsimple.publicapichooser.ApiChooserApp
 import com.somethingsimple.publicapichooser.R
 import com.somethingsimple.publicapichooser.di.component.MainComponent
-import com.somethingsimple.publicapichooser.ui.common.BackButtonListener
-import moxy.MvpAppCompatActivity
 import javax.inject.Inject
 
-class MainActivity : MvpAppCompatActivity(R.layout.activity_main) {
+class MainActivity : FragmentActivity() {
     private val navigator = AppNavigator(this, R.id.container)
 
     @Inject
@@ -23,7 +23,14 @@ class MainActivity : MvpAppCompatActivity(R.layout.activity_main) {
     override fun onCreate(savedInstanceState: Bundle?) {
         MainComponent.create((application as ApiChooserApp).getComponent()).inject(this)
         super.onCreate(savedInstanceState)
-        savedInstanceState ?: router.newRootScreen(ApiChooserScreens.categories())
+        setContentView(R.layout.activity_main)
+//        savedInstanceState ?: router.newRootScreen(ApiChooserScreens.categories())
+    }
+
+    override fun onStart() {
+        super.onStart()
+        val fragment = CategoriesFragment()
+        supportFragmentManager.beginTransaction().add(R.id.container, fragment).commit()
     }
 
     override fun onResumeFragments() {
@@ -33,14 +40,14 @@ class MainActivity : MvpAppCompatActivity(R.layout.activity_main) {
 
     override fun onPause() {
         super.onPause()
-        navigatorHolder.removeNavigator()
+//        navigatorHolder.removeNavigator()
     }
 
-    override fun onBackPressed() {
-        supportFragmentManager.fragments.forEach {
-            if (it is BackButtonListener && it.backPressed()) {
-                return
-            }
-        }
-    }
+//    override fun onBackPressed() {
+//        supportFragmentManager.fragments.forEach {
+//            if (it is BackButtonListener && it.backPressed()) {
+//                return
+//            }
+//        }
+//    }
 }

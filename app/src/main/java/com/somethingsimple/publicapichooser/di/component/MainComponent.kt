@@ -2,7 +2,6 @@ package com.somethingsimple.publicapichooser.di.component
 
 import com.somethingsimple.core_api.di.provider.CoreProvider
 import com.somethingsimple.publicapichooser.ui.MainActivity
-import com.somethingsimple.publicapichooser.ui.common.BaseFragment
 import dagger.Component
 import javax.inject.Singleton
 
@@ -27,5 +26,4 @@ interface MainComponent {
     }
 
     fun inject(activity: MainActivity)
-    fun inject(fragment: BaseFragment)
 }

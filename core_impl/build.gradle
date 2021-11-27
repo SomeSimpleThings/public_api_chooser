@@ -11,6 +11,7 @@ dependencies {
     api project(':core_api')
     implementation(
 
+            view_model,
             core_ktx,
             //cicerone
             cicerone,
@@ -28,7 +29,7 @@ dependencies {
             room_runtime,
             room_rxjava,
     )
-    kapt(
+    kapt(room_kapt,
             dagger_kapt)
 
     testImplementation(
