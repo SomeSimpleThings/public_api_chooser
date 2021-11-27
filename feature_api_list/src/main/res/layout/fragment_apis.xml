@@ -5,12 +5,12 @@
     android:layout_height="match_parent"
     tools:context="com.somethingsimple.feature_api_list.ui.ApisFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_apis"
+    <TextView
+        android:id="@+id/tv_apis"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:clipToPadding="false"
-        tools:listitem="@layout/publicapi_item" />
+        android:layout_height="match_parent">
+
+    </TextView>
 
 
 </FrameLayout>
