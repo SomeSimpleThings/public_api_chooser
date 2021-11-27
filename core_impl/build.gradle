@@ -1,0 +1,41 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+}
+
+apply from: "$project.rootDir/build_common.gradle"
+
+dependencies {
+
+    api project(':core_api')
+    implementation(
+
+            view_model,
+            core_ktx,
+            //cicerone
+            cicerone,
+            //retrofit
+            retrofit,
+            retrofit_gson_converter,
+            retrofit_rxjava_adapter,
+            //OkHTTP
+            platform(okhttp_bom),
+            okhttp,
+            okhttp_logging,
+            //Dagger
+            dagger,
+            //Room
+            room_runtime,
+            room_rxjava,
+    )
+    kapt(room_kapt,
+            dagger_kapt)
+
+    testImplementation(
+            junit)
+    androidTestImplementation(
+            androidx_test_ext,
+            androidx_test_espresso_core
+    )
+}

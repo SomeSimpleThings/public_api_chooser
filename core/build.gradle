@@ -1,0 +1,30 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+}
+
+apply from: "$project.rootDir/build_common.gradle"
+android {
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+
+    api project(':core_api')
+    implementation project(':core_impl')
+//    implementation project(path: ':core_api')
+
+    implementation core_ktx
+    testImplementation(
+            junit,
+            test_core,
+            test_runner,
+            test_ext_junit,
+            test_ext_truth
+    )
+}

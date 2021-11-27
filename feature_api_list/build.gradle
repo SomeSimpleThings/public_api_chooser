@@ -1,0 +1,59 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+
+}
+apply from: "$project.rootDir/build_common.gradle"
+
+android {
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+dependencies {
+
+    implementation project(':core')
+
+    implementation(
+            view_model,
+            core_ktx,
+            fragment_ktx,
+            android_legacy_support,
+            android_appcompat,
+            android_material,
+            android_constraint_layout,
+            //cicerone
+            cicerone,
+            //RxJava
+            rxjava,
+            rxjava_android,
+            //Dagger
+            dagger
+    )
+    kapt(
+            dagger_kapt)
+
+    testImplementation(
+            junit,
+            mockito_core,
+            mockito_kotlin,
+            mockito_inline,
+            test_core,
+            test_runner,
+            test_ext_junit,
+            test_ext_truth,
+            espresso_core,
+            espresso_intents
+    )
+
+    androidTestImplementation(
+            androidx_test_ext,
+            androidx_test_runner,
+            androidx_test_rules,
+    )
+}
