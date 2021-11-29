@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">Public api chooser</string>
     <string name="public_api_url">https://api.publicapis.org/</string>
+    <string name="api_list">Api list</string>
+    <string name="favourites">Favourites</string>
 </resources>

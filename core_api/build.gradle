@@ -13,8 +13,8 @@ dependencies {
 
             view_model,
             core_ktx,
-            //cicerone
-            cicerone,
+            nav_fragment,
+            nav_ui,
             //retrofit
             retrofit,
             retrofit_gson_converter,

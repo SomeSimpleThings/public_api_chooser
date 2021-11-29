@@ -14,13 +14,13 @@ dependencies {
     implementation(
             view_model,
             core_ktx,
+            nav_fragment,
+            nav_ui,
             fragment_ktx,
             android_legacy_support,
             android_appcompat,
             android_material,
             android_constraint_layout,
-            //cicerone
-            cicerone,
             //RxJava
             rxjava,
             rxjava_android,
