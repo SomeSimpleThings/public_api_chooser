@@ -27,7 +27,7 @@ android {
 dependencies {
 
     implementation project(path: ':core')
-    implementation project(path: ':feature_api_details')
+    implementation project(path: ':feature_categories')
 
     implementation(
             view_model,
@@ -36,8 +36,8 @@ dependencies {
             android_appcompat,
             android_material,
             android_constraint_layout,
-            //cicerone
-            cicerone,
+            nav_fragment,
+            nav_ui,
             //RxJava
             rxjava,
             rxjava_android,

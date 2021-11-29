@@ -13,8 +13,6 @@ dependencies {
 
             view_model,
             core_ktx,
-            //cicerone
-            cicerone,
             //retrofit
             retrofit,
             retrofit_gson_converter,

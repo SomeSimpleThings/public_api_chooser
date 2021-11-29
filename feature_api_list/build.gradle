@@ -27,8 +27,6 @@ dependencies {
             android_appcompat,
             android_material,
             android_constraint_layout,
-            //cicerone
-            cicerone,
             //RxJava
             rxjava,
             rxjava_android,

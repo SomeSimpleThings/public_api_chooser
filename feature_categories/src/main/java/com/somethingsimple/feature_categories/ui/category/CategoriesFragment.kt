@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
-import com.github.terrakok.cicerone.Router
 import com.somethingsimple.core_api.di.provider.AppWithComponent
 import com.somethingsimple.core_api.ui.common.BackButtonListener
 import com.somethingsimple.feature_categories.R
@@ -21,9 +20,6 @@ class CategoriesFragment : Fragment(R.layout.fragment_categories),
     BackButtonListener {
 
     private var viewBinding: FragmentCategoriesBinding? = null
-
-    @Inject
-    lateinit var router: Router
 
     @Inject
     lateinit var factory: ViewModelProvider.Factory
