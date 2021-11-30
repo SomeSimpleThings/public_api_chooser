@@ -44,5 +44,13 @@ class LocalPublicApiDataSourceImpl @Inject constructor(private val publicApiDao:
                 }
             }
 
+    override fun getApiByCategory(categoryName: String, count: Int): Single<List<ApiEntry>> =
+        publicApiDao.getPublicApisByCategory(categoryName, count)
+            .map { apiEntries ->
+                apiEntries.map {
+                    ApiEntry(it)
+                }
+            }
+
 
 }

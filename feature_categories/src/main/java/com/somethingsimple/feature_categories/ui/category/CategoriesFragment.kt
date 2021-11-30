@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.somethingsimple.core_api.di.provider.AppWithComponent
 import com.somethingsimple.core_api.ui.common.BackButtonListener
 import com.somethingsimple.feature_categories.R
@@ -27,6 +28,7 @@ class CategoriesFragment : Fragment(R.layout.fragment_categories),
     val categoryViewModel: CategoryViewModel by viewModels {
         factory
     }
+    private var adapt: CategoriesAdapter? = null
 
 
     override fun onAttach(context: Context) {
@@ -42,14 +44,20 @@ class CategoriesFragment : Fragment(R.layout.fragment_categories),
     ): View = FragmentCategoriesBinding.inflate(inflater, container, false)
         .apply {
             viewBinding = this
+            viewBinding?.recyclerCategories?.apply {
+                adapt = CategoriesAdapter()
+                this.adapter = adapt
+                this.layoutManager = LinearLayoutManager(context)
+            }
         }
         .root
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         categoryViewModel.getCategories()
+
         categoryViewModel.livedata.observe(viewLifecycleOwner, { list ->
-            viewBinding?.text?.text = list.map { it.toString() }.toString()
+            adapt?.submitList(list)
         })
     }
 

@@ -9,4 +9,5 @@ interface LocalPublicApiDataSource {
     fun getApiById(id: Long): Single<ApiEntry>
     fun getApiByName(name: String): Single<ApiEntry>
     fun getApiByCategory(categoryName: String): Single<List<ApiEntry>>
+    fun getApiByCategory(categoryName: String, count: Int = 3): Single<List<ApiEntry>>
 }

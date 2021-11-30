@@ -13,6 +13,9 @@ interface PublicApiDao {
     @Query("SELECT * FROM ApiEntryEntity WHERE category =:categoryName")
     fun getPublicApisByCategory(categoryName: String): Single<List<ApiEntryEntity>>
 
+    @Query("SELECT * FROM ApiEntryEntity WHERE category =:categoryName LIMIT :count")
+    fun getPublicApisByCategory(categoryName: String, count: Int = 3): Single<List<ApiEntryEntity>>
+
     @Query("SELECT * FROM ApiEntryEntity WHERE id =:id")
     fun getPublicApiById(id: Long): Single<ApiEntryEntity>
 
