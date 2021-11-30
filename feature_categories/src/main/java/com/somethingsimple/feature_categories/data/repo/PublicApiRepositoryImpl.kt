@@ -10,13 +10,16 @@ class PublicApiRepositoryImpl @Inject constructor(
     private val remoteDataSource: PublicApiDataSource,
     private val localDataSource: LocalPublicApiDataSource
 ) : PublicApiRepository {
-    override fun getPublicApiForCategory(categoryName: String): Single<List<ApiEntry>> =
+    override fun getPublicApiForCategory(
+        categoryName: String,
+        count: Int
+    ): Single<List<ApiEntry>> =
         localDataSource
-            .getApiByCategory(categoryName)
+            .getApiByCategory(categoryName, count)
             .flatMap { return@flatMap fetchRemoteIfRequired(it, categoryName) }
 
     override fun getRandomApiForCategory(categoryName: String, count: Int): Single<List<ApiEntry>> {
-        return remoteDataSource.getRandomApiByCategory(categoryName)
+        return remoteDataSource.getRandomApiByCategory(categoryName, count)
     }
 
     private fun fetchRemoteIfRequired(

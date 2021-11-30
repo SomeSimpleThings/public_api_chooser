@@ -26,8 +26,22 @@ class LocalPublicApiDataSourceImpl @Inject constructor(private val publicApiDao:
 
 
     override fun retain(apiEntry: ApiEntry): Single<ApiEntry> {
-        TODO("Not yet implemented")
+        return publicApiDao.retain(
+            ApiEntryEntity(
+                0,
+                apiEntry.api,
+                apiEntry.auth,
+                apiEntry.category,
+                apiEntry.cors,
+                apiEntry.description,
+                apiEntry.isHttps,
+                apiEntry.link
+            )
+        ).andThen(publicApiDao.getPublicApiByName(apiEntry.api).map {
+            ApiEntry(it)
+        })
     }
+
 
     override fun getApiById(id: Long): Single<ApiEntry> =
         publicApiDao.getPublicApiById(id).map { ApiEntry(it) }

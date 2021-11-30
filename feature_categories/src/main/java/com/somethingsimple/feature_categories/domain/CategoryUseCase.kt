@@ -4,7 +4,6 @@ import com.somethingsimple.core_api.data.vo.Category
 import com.somethingsimple.feature_categories.data.repo.CategoryRepository
 import com.somethingsimple.feature_categories.data.repo.PublicApiRepository
 import io.reactivex.rxjava3.core.Single
-import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 class CategoryUseCase @Inject constructor(
@@ -27,8 +26,7 @@ class CategoryUseCase @Inject constructor(
 
     private fun getItemsForCategory(category: Category): Single<CategoryWithEntries> {
         return publicApiRepository
-            .getPublicApiForCategory(categoryName = category.name)
-            .delay(3, TimeUnit.SECONDS)
+            .getPublicApiForCategory(categoryName = category.name, 5)
             .map { list -> CategoryWithEntries(category, list) }
     }
 }
