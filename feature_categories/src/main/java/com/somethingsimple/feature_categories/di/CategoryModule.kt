@@ -4,8 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.somethingsimple.core_api.viewmodel.ViewModelFactory
 import com.somethingsimple.core_api.viewmodel.ViewModelKey
-import com.somethingsimple.feature_categories.data.repo.CategoryRepository
-import com.somethingsimple.feature_categories.data.repo.CategoryRepositoryImpl
 import com.somethingsimple.feature_categories.data.repo.PublicApiRepository
 import com.somethingsimple.feature_categories.data.repo.PublicApiRepositoryImpl
 import com.somethingsimple.feature_categories.domain.CategoryUseCase
@@ -17,10 +15,6 @@ import dagger.multibindings.IntoMap
 
 @Module
 abstract class CategoryModule {
-
-    @Binds
-    @CategoryFeatureScope
-    abstract fun bindCategoryRepository(categoryRepositoryImpl: CategoryRepositoryImpl): CategoryRepository
 
     @Binds
     @CategoryFeatureScope
