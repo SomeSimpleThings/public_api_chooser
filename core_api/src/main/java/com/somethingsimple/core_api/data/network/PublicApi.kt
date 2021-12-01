@@ -11,6 +11,9 @@ interface PublicApi {
     fun getCategories(): Single<List<String>>
 
     @GET("/entries")
+    fun getAllApis(): Single<PublicApiEntries>
+
+    @GET("/entries")
     fun getApisForCategory(@Query("category") category: String): Single<PublicApiEntries>
 
     @GET("/random")

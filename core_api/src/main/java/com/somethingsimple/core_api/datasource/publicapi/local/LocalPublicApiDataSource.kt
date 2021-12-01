@@ -1,14 +1,18 @@
 package com.somethingsimple.core_api.datasource.publicapi.local
 
 import com.somethingsimple.core_api.data.vo.ApiEntry
-import io.reactivex.rxjava3.core.Flowable
-import io.reactivex.rxjava3.core.Single
+import com.somethingsimple.core_api.data.vo.Category
+import io.reactivex.rxjava3.core.Completable
+import io.reactivex.rxjava3.core.Maybe
 
 interface LocalPublicApiDataSource {
-    fun retain(categoryName: String, apis: List<ApiEntry>): Flowable<List<ApiEntry>>
-    fun retain(apiEntry: ApiEntry): Single<ApiEntry>
-    fun getApiById(id: Long): Single<ApiEntry>
-    fun getApiByName(name: String): Single<ApiEntry>
-    fun getApiByCategory(categoryName: String): Flowable<List<ApiEntry>>
-    fun getApiByCategory(categoryName: String, count: Int = 3): Flowable<List<ApiEntry>>
+    fun save(apis: List<ApiEntry>): Completable
+    fun retain(apis: List<ApiEntry>): Maybe<List<ApiEntry>>
+    fun retain(categoryName: String, apis: List<ApiEntry>): Maybe<List<ApiEntry>>
+    fun retain(apiEntry: ApiEntry): Maybe<ApiEntry>
+    fun getApiById(id: Long): Maybe<ApiEntry>
+    fun getApiByName(name: String): Maybe<ApiEntry>
+    fun getCategories(): Maybe<List<Category>>
+    fun getApiByCategory(categoryName: String): Maybe<List<ApiEntry>>
+    fun getApiByCategory(categoryName: String, count: Int = 3): Maybe<List<ApiEntry>>
 }

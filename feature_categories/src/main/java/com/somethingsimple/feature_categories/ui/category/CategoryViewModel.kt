@@ -24,7 +24,7 @@ class CategoryViewModel @Inject constructor(val categoryUseCase: CategoryUseCase
     }
 
     private fun onError(throwable: Throwable) {
-        throwable.message?.let { Log.e("Error", it) }
+        Log.e("Error", throwable.message.toString())
     }
 
     private fun loadCategories(category: List<CategoryWithEntries>) {
