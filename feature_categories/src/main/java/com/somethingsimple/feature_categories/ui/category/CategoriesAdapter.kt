@@ -8,7 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.somethingsimple.feature_categories.databinding.CategoryItemBinding
 import com.somethingsimple.feature_categories.domain.CategoryWithEntries
 
-class CategoriesAdapter :
+class CategoriesAdapter(
+    val categoryClickListener: (CategoryWithEntries) -> Unit
+) :
     ListAdapter<CategoryWithEntries, RecyclerView.ViewHolder>(CategoryWithEntriesItemDiff()) {
 
 
@@ -16,7 +18,7 @@ class CategoriesAdapter :
         val binding =
             CategoryItemBinding
                 .inflate(LayoutInflater.from(parent.context), parent, false)
-        return CategoryWithEntriesViewHolder(binding)
+        return CategoryWithEntriesViewHolder(binding, categoryClickListener)
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
@@ -24,8 +26,15 @@ class CategoriesAdapter :
     }
 
 
-    inner class CategoryWithEntriesViewHolder(private val binding: CategoryItemBinding) :
+    inner class CategoryWithEntriesViewHolder(
+        private val binding: CategoryItemBinding,
+        categoryClickListener: (CategoryWithEntries) -> Unit
+    ) :
         RecyclerView.ViewHolder(binding.root) {
+        init {
+            itemView.setOnClickListener { categoryClickListener.invoke(getItem(layoutPosition)) }
+        }
+
         fun bind(item: CategoryWithEntries) {
             binding.let {
                 it.categoryName.text = item.category.name

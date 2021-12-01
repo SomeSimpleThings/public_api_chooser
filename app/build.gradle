@@ -28,12 +28,13 @@ dependencies {
 
     implementation project(path: ':core')
     implementation project(path: ':feature_categories')
+    implementation project(path: ':feature_api_details')
+    implementation project(path: ':feature_api_list')
+    implementation project(path: ':feature_favourites')
 
     implementation(
             view_model,
             core_ktx,
-            android_legacy_support,
-            android_appcompat,
             android_material,
             android_constraint_layout,
             nav_fragment,

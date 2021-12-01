@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.somethingsimple.core_api.data.vo.ApiEntry
 import com.somethingsimple.feature_categories.databinding.ApiEntryCardBinding
 
-class ApisAdapter : ListAdapter<ApiEntry, RecyclerView.ViewHolder>(ApisDiffCallback()) {
+class ApisAdapter() : ListAdapter<ApiEntry, RecyclerView.ViewHolder>(ApisDiffCallback()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val binding =
             ApiEntryCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)

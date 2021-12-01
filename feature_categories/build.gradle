@@ -17,8 +17,6 @@ dependencies {
             nav_fragment,
             nav_ui,
             fragment_ktx,
-            android_legacy_support,
-            android_appcompat,
             android_material,
             android_constraint_layout,
             //RxJava

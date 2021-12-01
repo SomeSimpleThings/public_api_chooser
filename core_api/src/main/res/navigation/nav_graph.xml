@@ -18,8 +18,8 @@
     </fragment>
     <fragment
         android:id="@+id/navigation_favourites"
-        android:name="com.somethingsimple.feature_categories.ui.category.CategoriesFragment"
-        tools:layout="@layout/fragment_categories">
+        android:name="com.somethingsimple.feature_favourites.ui.FavouritesFragment"
+        tools:layout="@layout/fragmentt_favourites">
         <action
             android:id="@+id/action_to_api_details"
             app:destination="@id/api_details" />
