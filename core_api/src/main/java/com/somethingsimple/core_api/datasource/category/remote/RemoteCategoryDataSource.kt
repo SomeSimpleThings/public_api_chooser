@@ -1,5 +1,6 @@
 package com.somethingsimple.core_api.datasource.category.remote
 
+import android.util.Log
 import com.somethingsimple.core_api.data.network.PublicApi
 import com.somethingsimple.core_api.data.vo.Category
 import com.somethingsimple.core_api.datasource.category.CategoryDataSource
@@ -8,10 +9,13 @@ import javax.inject.Inject
 
 class RemoteCategoryDataSource @Inject constructor(private val api: PublicApi) :
     CategoryDataSource {
-    override fun getCategories(): Single<List<Category>> =
-        api.getCategories().flatMap { namesList ->
+    override fun getCategories(): Single<List<Category>> {
+        Log.d("RemoteCategoryDataSourc", "getCategories")
+        return api.getCategories().flatMap { namesList ->
             val categories: MutableList<Category> = mutableListOf()
             namesList.forEach { categories.add(Category(it)) }
             return@flatMap Single.just(categories)
         }
+    }
+
 }

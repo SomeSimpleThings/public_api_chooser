@@ -3,6 +3,7 @@ package com.somethingsimple.feature_categories.data.repo
 import com.somethingsimple.core_api.data.vo.ApiEntry
 import com.somethingsimple.core_api.datasource.publicapi.PublicApiDataSource
 import com.somethingsimple.core_api.datasource.publicapi.local.LocalPublicApiDataSource
+import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Single
 import javax.inject.Inject
 
@@ -13,7 +14,7 @@ class PublicApiRepositoryImpl @Inject constructor(
     override fun getPublicApiForCategory(
         categoryName: String,
         count: Int
-    ): Single<List<ApiEntry>> =
+    ): Flowable<List<ApiEntry>> =
         localDataSource
             .getApiByCategory(categoryName, count)
             .flatMap { return@flatMap fetchRemoteIfRequired(it, categoryName) }
@@ -25,12 +26,13 @@ class PublicApiRepositoryImpl @Inject constructor(
     private fun fetchRemoteIfRequired(
         apis: List<ApiEntry>,
         categoryName: String
-    ): Single<List<ApiEntry>> =
+    ): Flowable<List<ApiEntry>> =
         if (apis.isEmpty()) {
             remoteDataSource
                 .getApiByCategory(categoryName)
-                .flatMap { return@flatMap localDataSource.retain(categoryName, it) }
+                .toFlowable()
+                .flatMap { localDataSource.retain(categoryName, it) }
         } else {
-            Single.just(apis)
+            Flowable.just(apis)
         }
 }
