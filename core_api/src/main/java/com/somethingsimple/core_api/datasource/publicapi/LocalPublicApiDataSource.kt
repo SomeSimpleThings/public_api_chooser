@@ -14,8 +14,8 @@ interface LocalPublicApiDataSource {
     fun retain(apis: List<ApiEntry>): Maybe<List<ApiEntry>>
     fun retain(categoryName: String, apis: List<ApiEntry>): Maybe<List<ApiEntry>>
 
-    fun getApiById(id: Long): Maybe<ApiEntry>
-    fun getApiByName(name: String): Maybe<ApiEntry>
+    //    fun getApiById(id: Long): Maybe<ApiEntry>
+    fun getApiByLink(link: String): Maybe<ApiEntry>
 
     fun getCategories(): Maybe<List<Category>>
     fun getApiByCategory(categoryName: String): Maybe<List<ApiEntry>>

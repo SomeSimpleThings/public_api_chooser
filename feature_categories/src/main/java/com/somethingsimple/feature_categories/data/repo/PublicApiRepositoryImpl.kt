@@ -39,6 +39,7 @@ class PublicApiRepositoryImpl @Inject constructor(
         categories: List<Category>,
     ): Maybe<List<Category>> =
         if (categories.isEmpty() || isOutdated()) {
+            appPrefsDataSource.saveLastUpdateTime(Calendar.getInstance().time)
             remoteDataSource
                 .getAllApis()
                 .toMaybe()
@@ -59,7 +60,6 @@ class PublicApiRepositoryImpl @Inject constructor(
         categoryName: String
     ): Maybe<List<ApiEntry>> =
         if (apis.isEmpty()) {
-            appPrefsDataSource.saveLastUpdateTime(Calendar.getInstance().time)
             remoteDataSource
                 .getApiByCategory(categoryName)
                 .toMaybe()
@@ -71,6 +71,6 @@ class PublicApiRepositoryImpl @Inject constructor(
     private fun isOutdated(): Boolean {
         val delta = Calendar.getInstance().time.time - appPrefsDataSource.getLastUpdateTime().time
 
-        return TimeUnit.MINUTES.convert(delta, TimeUnit.MILLISECONDS) > 1
+        return TimeUnit.MINUTES.convert(delta, TimeUnit.MILLISECONDS) > 10
     }
 }

@@ -55,7 +55,7 @@ class CategoriesFragment : BaseFragment(),
                     {
                         findNavController().navigate(
                             R.id.action_to_api_details,
-                            Bundle().apply { putString("api_id", it.api) })
+                            Bundle().apply { putString("api_id", it.link) })
                     }
                 )
                 this.adapter = adapt

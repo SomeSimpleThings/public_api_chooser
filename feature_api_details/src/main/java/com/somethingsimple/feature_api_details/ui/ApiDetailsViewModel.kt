@@ -13,8 +13,8 @@ class ApiDetailsViewModel @Inject constructor(private val apisUseCase: ApiDetail
 
     val liveData = MutableLiveData<ApiEntry>()
 
-    fun getApi(name: String) {
-        apisUseCase.getApiForName(name = name)
+    fun getApi(link: String) {
+        apisUseCase.getApiForLink(link = link)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(::postValue)

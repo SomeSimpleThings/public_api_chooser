@@ -11,15 +11,15 @@ class ApiDetailsRepositoryImpl @Inject constructor(
     private val remotePublicApiDataSource: PublicApiDataSource
 ) : ApiDetailsRepository {
     override fun getApiForName(name: String): Maybe<ApiEntry> {
-        return localPublicApiDataSource.getApiByName(name)
+        return localPublicApiDataSource.getApiByLink(name)
     }
 
-    override fun getApiById(id: Long): Maybe<ApiEntry> {
-        return localPublicApiDataSource.getApiById(id)
-    }
+//    override fun getApiById(id: Long): Maybe<ApiEntry> {
+//        return localPublicApiDataSource.getApiById(id)
+//    }
 
-    override fun getApiByName(name: String): Maybe<ApiEntry> {
-        return localPublicApiDataSource.getApiByName(name)
+    override fun getApiByLink(link: String): Maybe<ApiEntry> {
+        return localPublicApiDataSource.getApiByLink(link)
     }
 
 

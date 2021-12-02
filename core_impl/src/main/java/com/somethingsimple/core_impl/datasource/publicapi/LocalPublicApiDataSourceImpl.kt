@@ -15,7 +15,6 @@ class LocalPublicApiDataSourceImpl @Inject constructor(private val publicApiDao:
     override fun save(apiEntry: ApiEntry): Completable {
         return publicApiDao.save(
             ApiEntryEntity(
-                apiEntry.id,
                 apiEntry.api,
                 apiEntry.auth,
                 apiEntry.category,
@@ -30,7 +29,6 @@ class LocalPublicApiDataSourceImpl @Inject constructor(private val publicApiDao:
     override fun save(apis: List<ApiEntry>): Completable =
         publicApiDao.save(apis.map { apiEntry ->
             ApiEntryEntity(
-                apiEntry.id,
                 apiEntry.api,
                 apiEntry.auth,
                 apiEntry.category,
@@ -61,11 +59,11 @@ class LocalPublicApiDataSourceImpl @Inject constructor(private val publicApiDao:
             })
     }
 
-    override fun getApiById(id: Long): Maybe<ApiEntry> =
-        publicApiDao.getPublicApiById(id).map { ApiEntry(it) }
+//    override fun getApiById(id: Long): Maybe<ApiEntry> =
+//        publicApiDao.getPublicApiById(id).map { ApiEntry(it) }
 
-    override fun getApiByName(name: String): Maybe<ApiEntry> =
-        publicApiDao.getPublicApiByName(name).map { ApiEntry(it) }
+    override fun getApiByLink(link: String): Maybe<ApiEntry> =
+        publicApiDao.getPublicApiByName(link).map { ApiEntry(it) }
 
     override fun getCategories(): Maybe<List<Category>> {
         return publicApiDao.getCategories().map {
