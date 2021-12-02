@@ -1,4 +1,4 @@
-package com.somethingsimple.core_api.datasource.publicapi.remote
+package com.somethingsimple.core_impl.datasource.publicapi
 
 import com.somethingsimple.core_api.data.network.PublicApi
 import com.somethingsimple.core_api.data.vo.ApiEntry
@@ -7,7 +7,7 @@ import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 import javax.inject.Inject
 
-class RemotePublicApiDataSource @Inject constructor(private val api: PublicApi) :
+class RemotePublicApiDataSourceImpl @Inject constructor(private val api: PublicApi) :
     PublicApiDataSource {
 
     override fun getAllApis(): Single<List<ApiEntry>> {

@@ -1,9 +1,10 @@
-package com.somethingsimple.core_api.datasource.publicapi.local
+package com.somethingsimple.core_impl.datasource.publicapi
 
 import com.somethingsimple.core_api.data.db.PublicApiDao
 import com.somethingsimple.core_api.data.db.entity.ApiEntryEntity
 import com.somethingsimple.core_api.data.vo.ApiEntry
 import com.somethingsimple.core_api.data.vo.Category
+import com.somethingsimple.core_api.datasource.publicapi.LocalPublicApiDataSource
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Maybe
 import javax.inject.Inject

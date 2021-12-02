@@ -2,10 +2,7 @@ package com.somethingsimple.publicapichooser.di.component
 
 import android.app.Application
 import com.somethingsimple.core.CoreProviderFactory
-import com.somethingsimple.core_api.di.provider.AppProvider
-import com.somethingsimple.core_api.di.provider.CoreProvider
-import com.somethingsimple.core_api.di.provider.LocalDataSourceProvider
-import com.somethingsimple.core_api.di.provider.NetworkDataSourceProvider
+import com.somethingsimple.core_api.di.provider.*
 import dagger.Component
 
 
@@ -13,6 +10,7 @@ import dagger.Component
     dependencies = [
         LocalDataSourceProvider::class,
         NetworkDataSourceProvider::class,
+        AppPrefsProvider::class,
         AppProvider::class]
 )
 interface CoreComponent : CoreProvider {
@@ -27,6 +25,7 @@ interface CoreComponent : CoreProvider {
                 .appProvider(appComponent)
                 .networkDataSourceProvider(CoreProviderFactory.createNetworkProvider())
                 .localDataSourceProvider(CoreProviderFactory.createLocalDSProvider(appComponent))
+                .appPrefsProvider(CoreProviderFactory.createAppPrefsProvider(appComponent))
                 .build()
 
         }

@@ -3,7 +3,7 @@ package com.somethingsimple.feature_categories.data.repo
 import com.somethingsimple.core_api.data.vo.ApiEntry
 import com.somethingsimple.core_api.data.vo.Category
 import com.somethingsimple.core_api.datasource.publicapi.PublicApiDataSource
-import com.somethingsimple.core_api.datasource.publicapi.local.LocalPublicApiDataSource
+import com.somethingsimple.core_api.datasource.publicapi.LocalPublicApiDataSource
 import io.reactivex.rxjava3.core.Maybe
 import io.reactivex.rxjava3.core.Single
 import javax.inject.Inject

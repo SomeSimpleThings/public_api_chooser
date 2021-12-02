@@ -1,4 +1,4 @@
-package com.somethingsimple.core_api.datasource.publicapi.local
+package com.somethingsimple.core_api.datasource.publicapi
 
 import com.somethingsimple.core_api.data.vo.ApiEntry
 import com.somethingsimple.core_api.data.vo.Category

@@ -2,7 +2,7 @@ package com.somethingsimple.feature_api_details.data
 
 import com.somethingsimple.core_api.data.vo.ApiEntry
 import com.somethingsimple.core_api.datasource.publicapi.PublicApiDataSource
-import com.somethingsimple.core_api.datasource.publicapi.local.LocalPublicApiDataSource
+import com.somethingsimple.core_api.datasource.publicapi.LocalPublicApiDataSource
 import io.reactivex.rxjava3.core.Maybe
 import javax.inject.Inject
 
