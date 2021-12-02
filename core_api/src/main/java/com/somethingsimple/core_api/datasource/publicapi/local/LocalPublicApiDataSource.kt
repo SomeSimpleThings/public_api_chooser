@@ -14,5 +14,5 @@ interface LocalPublicApiDataSource {
     fun getApiByName(name: String): Maybe<ApiEntry>
     fun getCategories(): Maybe<List<Category>>
     fun getApiByCategory(categoryName: String): Maybe<List<ApiEntry>>
-    fun getApiByCategory(categoryName: String, count: Int = 3): Maybe<List<ApiEntry>>
+    fun getApiByCategory(categoryName: String, count: Int): Maybe<List<ApiEntry>>
 }
