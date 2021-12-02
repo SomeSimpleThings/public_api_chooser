@@ -3,5 +3,5 @@
     <dimen name="category_item_margin">10dp</dimen>
     <dimen name="api_item_size">140dp</dimen>
     <dimen name="desc_text_size">24sp</dimen>
-    <dimen name="api_name_text_size">32sp</dimen>
+    <dimen name="api_name_text_size">24sp</dimen>
 </resources>

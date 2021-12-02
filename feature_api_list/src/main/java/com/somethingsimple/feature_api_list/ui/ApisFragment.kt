@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.somethingsimple.core_api.di.provider.AppWithComponent
 import com.somethingsimple.core_api.ui.common.BackButtonListener
@@ -54,7 +55,11 @@ class ApisFragment : Fragment(R.layout.fragment_apis),
         .apply {
             viewBinding = this
             viewBinding?.recyclerApis?.apply {
-                apisAdapter = ApisAdapter()
+                apisAdapter = ApisAdapter {
+                    findNavController().navigate(
+                        R.id.action_to_api_details,
+                        Bundle().apply { putString("api_id", it.api) })
+                }
                 this.adapter = apisAdapter
                 this.layoutManager = LinearLayoutManager(context)
             }
