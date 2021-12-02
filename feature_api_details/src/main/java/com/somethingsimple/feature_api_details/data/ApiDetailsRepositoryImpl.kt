@@ -18,5 +18,9 @@ class ApiDetailsRepositoryImpl @Inject constructor(
         return localPublicApiDataSource.getApiById(id)
     }
 
+    override fun getApiByName(name: String): Maybe<ApiEntry> {
+        return localPublicApiDataSource.getApiByName(name)
+    }
+
 
 }

@@ -12,8 +12,10 @@ class ApisViewModel @Inject constructor(private val apisUseCase: ApisUseCase) : 
     val livedata = MutableLiveData<List<ApiEntry>>()
 
     fun getApisForCategory(category: String) {
-        apisUseCase.getApiForCategory(category).subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread()).subscribe(::postApis)
+        apisUseCase.getApiForCategory(category)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(::postApis)
 
     }
 

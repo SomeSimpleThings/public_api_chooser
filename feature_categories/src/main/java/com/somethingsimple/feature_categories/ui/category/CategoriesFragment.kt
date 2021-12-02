@@ -46,11 +46,18 @@ class CategoriesFragment : BaseFragment(),
         .apply {
             viewBinding = this
             viewBinding?.recyclerCategories?.apply {
-                adapt = CategoriesAdapter {
-                    findNavController().navigate(
-                        R.id.action_to_api_list,
-                        Bundle().apply { putString("category_name", it.category.name) })
-                }
+                adapt = CategoriesAdapter(
+                    {
+                        findNavController().navigate(
+                            R.id.action_to_api_list,
+                            Bundle().apply { putString("category_name", it.category.name) })
+                    },
+                    {
+                        findNavController().navigate(
+                            R.id.action_to_api_details,
+                            Bundle().apply { putString("api_id", it.api) })
+                    }
+                )
                 this.adapter = adapt
                 this.layoutManager = LinearLayoutManager(context)
             }

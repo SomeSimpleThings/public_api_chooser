@@ -26,7 +26,7 @@ interface PublicApiDao {
     @Query("SELECT * FROM ApiEntryEntity WHERE id =:id")
     fun getPublicApiById(id: Long): Maybe<ApiEntryEntity>
 
-    @Query("SELECT * FROM ApiEntryEntity WHERE api =:name")
+    @Query("SELECT * FROM ApiEntryEntity WHERE api =:name LIMIT 1")
     fun getPublicApiByName(name: String): Maybe<ApiEntryEntity>
 
 
