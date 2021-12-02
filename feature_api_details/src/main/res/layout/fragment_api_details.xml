@@ -7,7 +7,7 @@
     tools:context="com.somethingsimple.feature_api_details.ui.ApiDetailsFragment">
 
     <TextView
-        android:id="@+id/api_category_l"
+        android:id="@+id/api_category"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -55,6 +55,17 @@
         android:textSize="@dimen/desc_text_size"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        tools:text="@tools:sample/cities" />
+
+    <ImageView
+        android:id="@+id/api_favourite"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_margin="30dp"
+        android:src="@drawable/ic_baseline_star_border_24"
+        android:textSize="@dimen/desc_text_size"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         tools:text="@tools:sample/cities" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

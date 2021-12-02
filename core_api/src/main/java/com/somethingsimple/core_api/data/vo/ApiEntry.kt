@@ -10,7 +10,8 @@ data class ApiEntry(
     val cors: String,
     val description: String,
     val isHttps: Boolean,
-    val link: String
+    val link: String,
+    val favourite: Boolean
 ) {
     constructor(apiEntryDto: ApiEntryDto) : this(
         apiEntryDto.api,
@@ -19,7 +20,9 @@ data class ApiEntry(
         apiEntryDto.cors,
         apiEntryDto.description,
         apiEntryDto.hTTPS,
-        apiEntryDto.link
+        apiEntryDto.link,
+        false
+
     )
 
     constructor(apiEntryEntity: ApiEntryEntity) : this(
@@ -29,6 +32,7 @@ data class ApiEntry(
         apiEntryEntity.cors,
         apiEntryEntity.description,
         apiEntryEntity.hTTPS,
-        apiEntryEntity.link
+        apiEntryEntity.link,
+        apiEntryEntity.favourite
     )
 }

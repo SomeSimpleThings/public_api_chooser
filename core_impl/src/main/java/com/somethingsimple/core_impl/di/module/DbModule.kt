@@ -20,4 +20,8 @@ class DbModule {
     @Singleton
     @Provides
     fun provideApiEntryDao(database: ApiChooserDb) = database.publicApiDao()
+
+    @Singleton
+    @Provides
+    fun provideFavouritesDao(database: ApiChooserDb) = database.favouriteDao()
 }

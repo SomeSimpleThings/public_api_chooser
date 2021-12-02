@@ -58,7 +58,7 @@ class ApisFragment : Fragment(R.layout.fragment_apis),
                 apisAdapter = ApisAdapter {
                     findNavController().navigate(
                         R.id.action_to_api_details,
-                        Bundle().apply { putString("api_id", it.api) })
+                        Bundle().apply { putString("api_id", it.link) })
                 }
                 this.adapter = apisAdapter
                 this.layoutManager = LinearLayoutManager(context)

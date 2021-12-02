@@ -5,5 +5,5 @@ import com.somethingsimple.core_api.data.db.entity.CategorySynt
 data class Category(val name: String) {
 
     constructor(category: CategorySynt) :
-            this(category.category)
+            this(category.categoryName)
 }

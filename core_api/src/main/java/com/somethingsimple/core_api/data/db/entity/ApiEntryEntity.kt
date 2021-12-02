@@ -14,6 +14,7 @@ data class ApiEntryEntity(
     val description: String,
     val hTTPS: Boolean,
     @PrimaryKey
-    val link: String,
+    val link: String
 ) {
+    var favourite: Boolean = false
 }

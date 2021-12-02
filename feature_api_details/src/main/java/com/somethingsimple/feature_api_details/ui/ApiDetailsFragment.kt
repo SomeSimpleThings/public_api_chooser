@@ -47,16 +47,27 @@ class ApiDetailsFragment : Fragment(R.layout.fragment_api_details),
     ): View = FragmentApiDetailsBinding.inflate(inflater, container, false)
         .apply {
             viewBinding = this
+            this.apiFavourite.setOnClickListener {
+                apiDetailsViewModel.saveToFavourite()
+            }
         }
         .root
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        apiDetailsViewModel.getApi(api)
         apiDetailsViewModel.liveData.observe(viewLifecycleOwner) {
-            viewBinding?.apiName?.text = it.toString()
-
+            viewBinding?.apply {
+                apiCategory.text = it.category
+                apiName.text = it.api
+                apiDescription.text = it.description
+                apiUrl.text = it.auth
+                val res =
+                    if (it.favourite) R.drawable.ic_star_rate_24
+                    else R.drawable.ic_baseline_star_border_24
+                apiFavourite.setImageResource(res)
+            }
         }
+        apiDetailsViewModel.getApi(api)
     }
 
     companion object {

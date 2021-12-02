@@ -8,25 +8,22 @@ import io.reactivex.rxjava3.core.Maybe
 
 @Dao
 interface PublicApiDao {
-    @Query("SELECT * FROM ApiEntryEntity")
+    @Query(API_ENTRIES_QUERY)
     fun getPublicApis(): Maybe<List<ApiEntryEntity>>
 
-    @Query("SELECT category FROM ApiEntryEntity GROUP BY category")
+    @Query("SELECT category AS categoryName FROM ApiEntryEntity GROUP BY category")
     fun getCategories(): Maybe<List<CategorySynt>>
 
-    @Query("SELECT * FROM ApiEntryEntity WHERE category =:categoryName")
+    @Query("$API_ENTRIES_QUERY WHERE category =:categoryName")
     fun getPublicApisByCategory(categoryName: String): Maybe<List<ApiEntryEntity>>
 
-    @Query("SELECT * FROM ApiEntryEntity WHERE category =:categoryName LIMIT :count")
+    @Query("$API_ENTRIES_QUERY WHERE category =:categoryName LIMIT :count")
     fun getPublicApisByCategory(
         categoryName: String,
         count: Int = 3
     ): Maybe<List<ApiEntryEntity>>
 
-//    @Query("SELECT * FROM ApiEntryEntity WHERE id =:id")
-//    fun getPublicApiById(id: Long): Maybe<ApiEntryEntity>
-
-    @Query("SELECT * FROM ApiEntryEntity WHERE api =:name LIMIT 1")
+    @Query("$API_ENTRIES_QUERY WHERE api =:name LIMIT 1")
     fun getPublicApiByName(name: String): Maybe<ApiEntryEntity>
 
 
@@ -35,4 +32,18 @@ interface PublicApiDao {
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
     fun save(apiEntry: ApiEntryEntity): Completable
+
+    @Query("$API_ENTRIES_QUERY WHERE link =:link LIMIT 1")
+    fun getPublicApiByLink(link: String): Maybe<ApiEntryEntity>
+
+    companion object {
+        private const val API_ENTRIES_QUERY = """
+            SELECT  
+                api, auth, category, cors, description, hTTPS, link,
+                case when f.apiLink  = a.link then 1 else  0 end as favourite
+            FROM  ApiEntryEntity   a 
+            LEFT  JOIN  FavouritesEntity   f 
+            ON  a.link = f.apiLink
+            """
+    }
 }
