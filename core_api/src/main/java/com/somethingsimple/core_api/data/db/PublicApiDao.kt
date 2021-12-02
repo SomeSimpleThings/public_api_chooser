@@ -31,8 +31,8 @@ interface PublicApiDao {
 
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun retain(publicApis: List<ApiEntryEntity>): Completable
+    fun save(publicApis: List<ApiEntryEntity>): Completable
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
-    fun retain(apiEntry: ApiEntryEntity): Completable
+    fun save(apiEntry: ApiEntryEntity): Completable
 }
