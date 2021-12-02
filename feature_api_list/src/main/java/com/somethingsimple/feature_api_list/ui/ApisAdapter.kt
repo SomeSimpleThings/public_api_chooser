@@ -8,7 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.somethingsimple.core_api.data.vo.ApiEntry
 import com.somethingsimple.feature_api_list.databinding.PublicapiItemBinding
 
-class ApisAdapter : ListAdapter<ApiEntry, RecyclerView.ViewHolder>(ApiEntryDiff()) {
+class ApisAdapter(
+    val apiClickCallback: (ApiEntry) -> Unit
+) : ListAdapter<ApiEntry, RecyclerView.ViewHolder>(ApiEntryDiff()) {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -19,15 +21,23 @@ class ApisAdapter : ListAdapter<ApiEntry, RecyclerView.ViewHolder>(ApiEntryDiff(
                 parent,
                 false
             )
-        return ApiEntryViewHolder(binding)
+        return ApiEntryViewHolder(binding, apiClickCallback)
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         (holder as ApiEntryViewHolder).bind(getItem(position))
     }
 
-    inner class ApiEntryViewHolder(private val binding: PublicapiItemBinding) :
+    inner class ApiEntryViewHolder(
+        private val binding: PublicapiItemBinding,
+        apiClickCallback: (ApiEntry) -> Unit
+    ) :
         RecyclerView.ViewHolder(binding.root) {
+
+        init {
+            itemView.setOnClickListener { apiClickCallback.invoke(getItem(layoutPosition)) }
+        }
+
         fun bind(apiEntry: ApiEntry) {
             binding.apply {
                 apiName.text = apiEntry.api
