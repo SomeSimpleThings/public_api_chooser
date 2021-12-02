@@ -5,6 +5,7 @@ import io.reactivex.rxjava3.core.Maybe
 
 interface ApiDetailsRepository {
     fun getApiForName(name: String): Maybe<ApiEntry>
-    fun getApiById(id: Long): Maybe<ApiEntry>
-    fun getApiByName(name: String): Maybe<ApiEntry>
+
+    //    fun getApiById(id: Long): Maybe<ApiEntry>
+    fun getApiByLink(link: String): Maybe<ApiEntry>
 }

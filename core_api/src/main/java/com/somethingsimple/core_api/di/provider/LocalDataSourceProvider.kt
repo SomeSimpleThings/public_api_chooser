@@ -1,6 +1,6 @@
 package com.somethingsimple.core_api.di.provider
 
-import com.somethingsimple.core_api.datasource.publicapi.local.LocalPublicApiDataSource
+import com.somethingsimple.core_api.datasource.publicapi.LocalPublicApiDataSource
 
 interface LocalDataSourceProvider {
 

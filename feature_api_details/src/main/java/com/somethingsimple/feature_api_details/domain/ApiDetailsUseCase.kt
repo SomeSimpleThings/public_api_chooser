@@ -5,5 +5,5 @@ import javax.inject.Inject
 
 class ApiDetailsUseCase @Inject constructor(private val repository: ApiDetailsRepository) {
 
-    fun getApiForName(name: String) = repository.getApiByName(name)
+    fun getApiForLink(link: String) = repository.getApiByLink(link)
 }

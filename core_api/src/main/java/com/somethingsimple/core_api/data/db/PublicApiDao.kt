@@ -23,16 +23,16 @@ interface PublicApiDao {
         count: Int = 3
     ): Maybe<List<ApiEntryEntity>>
 
-    @Query("SELECT * FROM ApiEntryEntity WHERE id =:id")
-    fun getPublicApiById(id: Long): Maybe<ApiEntryEntity>
+//    @Query("SELECT * FROM ApiEntryEntity WHERE id =:id")
+//    fun getPublicApiById(id: Long): Maybe<ApiEntryEntity>
 
     @Query("SELECT * FROM ApiEntryEntity WHERE api =:name LIMIT 1")
     fun getPublicApiByName(name: String): Maybe<ApiEntryEntity>
 
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun retain(publicApis: List<ApiEntryEntity>): Completable
+    fun save(publicApis: List<ApiEntryEntity>): Completable
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
-    fun retain(apiEntry: ApiEntryEntity): Completable
+    fun save(apiEntry: ApiEntryEntity): Completable
 }

@@ -4,13 +4,14 @@ import android.app.Application
 import android.content.Context
 import com.somethingsimple.core_api.di.provider.AppProvider
 import com.somethingsimple.publicapichooser.ApiChooserApp
+import com.somethingsimple.publicapichooser.di.module.AppModule
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
 
 
 @Singleton
-@Component
+@Component(modules = [AppModule::class])
 interface AppComponent : AppProvider {
     companion object {
 

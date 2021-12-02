@@ -2,22 +2,20 @@ package com.somethingsimple.feature_categories.data.repo
 
 import com.somethingsimple.core_api.data.vo.ApiEntry
 import com.somethingsimple.core_api.data.vo.Category
+import com.somethingsimple.core_api.datasource.AppPrefsDataSource
+import com.somethingsimple.core_api.datasource.publicapi.LocalPublicApiDataSource
 import com.somethingsimple.core_api.datasource.publicapi.PublicApiDataSource
-import com.somethingsimple.core_api.datasource.publicapi.local.LocalPublicApiDataSource
 import io.reactivex.rxjava3.core.Maybe
 import io.reactivex.rxjava3.core.Single
+import java.util.*
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 class PublicApiRepositoryImpl @Inject constructor(
     private val remoteDataSource: PublicApiDataSource,
-    private val localDataSource: LocalPublicApiDataSource
+    private val localDataSource: LocalPublicApiDataSource,
+    private val appPrefsDataSource: AppPrefsDataSource
 ) : PublicApiRepository {
-    override fun getPublicApis(): Maybe<List<ApiEntry>> {
-        return remoteDataSource
-            .getAllApis()
-            .toMaybe()
-            .flatMap { localDataSource.retain(it) }
-    }
 
     override fun getCategories(): Maybe<List<Category>> {
         return localDataSource
@@ -40,7 +38,8 @@ class PublicApiRepositoryImpl @Inject constructor(
     private fun fetchRemoteIfRequired(
         categories: List<Category>,
     ): Maybe<List<Category>> =
-        if (categories.isEmpty()) {
+        if (categories.isEmpty() || isOutdated()) {
+            appPrefsDataSource.saveLastUpdateTime(Calendar.getInstance().time)
             remoteDataSource
                 .getAllApis()
                 .toMaybe()
@@ -68,4 +67,10 @@ class PublicApiRepositoryImpl @Inject constructor(
         } else {
             Maybe.just(apis)
         }
+
+    private fun isOutdated(): Boolean {
+        val delta = Calendar.getInstance().time.time - appPrefsDataSource.getLastUpdateTime().time
+
+        return TimeUnit.MINUTES.convert(delta, TimeUnit.MILLISECONDS) > 10
+    }
 }

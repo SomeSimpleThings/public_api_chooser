@@ -4,7 +4,6 @@ import com.somethingsimple.core_api.data.db.entity.ApiEntryEntity
 import com.somethingsimple.core_api.data.network.dto.ApiEntryDto
 
 data class ApiEntry(
-    val id: Long,
     val api: String,
     val auth: String,
     val category: String,
@@ -14,7 +13,6 @@ data class ApiEntry(
     val link: String
 ) {
     constructor(apiEntryDto: ApiEntryDto) : this(
-        0,
         apiEntryDto.api,
         apiEntryDto.auth,
         apiEntryDto.category,
@@ -25,7 +23,6 @@ data class ApiEntry(
     )
 
     constructor(apiEntryEntity: ApiEntryEntity) : this(
-        apiEntryEntity.id,
         apiEntryEntity.api,
         apiEntryEntity.auth,
         apiEntryEntity.category,

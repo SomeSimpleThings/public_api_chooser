@@ -1,8 +1,8 @@
 package com.somethingsimple.feature_api_list.data.repo
 
 import com.somethingsimple.core_api.data.vo.ApiEntry
+import com.somethingsimple.core_api.datasource.publicapi.LocalPublicApiDataSource
 import com.somethingsimple.core_api.datasource.publicapi.PublicApiDataSource
-import com.somethingsimple.core_api.datasource.publicapi.local.LocalPublicApiDataSource
 import io.reactivex.rxjava3.core.Maybe
 import javax.inject.Inject
 
@@ -16,9 +16,9 @@ class PublicApiRepositoryImpl @Inject constructor(
 //            .flatMap { return@flatMap fetchRemoteIfRequired(it, categoryName) }
 
 
-    override fun getPublicApiById(id: Long): Maybe<ApiEntry> =
+    override fun getPublicApiByLink(link: String): Maybe<ApiEntry> =
         localDataSource
-            .getApiById(id)
+            .getApiByLink(link)
 
 //
 //    private fun fetchRemoteIfRequired(
