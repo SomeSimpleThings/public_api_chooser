@@ -23,8 +23,8 @@ dependencies {
             view_model,
             core_ktx,
             fragment_ktx,
-            android_legacy_support,
-            android_appcompat,
+            nav_fragment,
+            nav_ui,
             android_material,
             android_constraint_layout,
             //RxJava

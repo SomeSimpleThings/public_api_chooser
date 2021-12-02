@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.somethingsimple.core_api.di.provider.AppWithComponent
 import com.somethingsimple.core_api.ui.common.BackButtonListener
 import com.somethingsimple.feature_api_list.R
@@ -34,7 +35,7 @@ class ApisFragment : Fragment(R.layout.fragment_apis),
         arguments?.getString(ARG_CATEGORY) ?: ""
     }
 
-//    private var adapter: PublicApisAdapter? = null
+    private var apisAdapter: ApisAdapter? = null
 
     override fun onAttach(context: Context) {
         ApiListComponent
@@ -52,6 +53,11 @@ class ApisFragment : Fragment(R.layout.fragment_apis),
     ): View = FragmentApisBinding.inflate(inflater, container, false)
         .apply {
             viewBinding = this
+            viewBinding?.recyclerApis?.apply {
+                apisAdapter = ApisAdapter()
+                this.adapter = apisAdapter
+                this.layoutManager = LinearLayoutManager(context)
+            }
         }
         .root
 
@@ -59,7 +65,7 @@ class ApisFragment : Fragment(R.layout.fragment_apis),
         super.onViewCreated(view, savedInstanceState)
         apisViewModel.getApisForCategory(category)
         apisViewModel.livedata.observe(viewLifecycleOwner, { list ->
-            viewBinding?.tvApis?.text = list.map { it.toString() }.toString()
+            apisAdapter?.submitList(list)
         })
 
     }

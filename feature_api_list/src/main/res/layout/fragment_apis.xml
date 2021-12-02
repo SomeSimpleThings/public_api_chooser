@@ -5,12 +5,13 @@
     android:layout_height="match_parent"
     tools:context="com.somethingsimple.feature_api_list.ui.ApisFragment">
 
-    <TextView
-        android:id="@+id/tv_apis"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_apis"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:listitem="@layout/publicapi_item">
 
-    </TextView>
+    </androidx.recyclerview.widget.RecyclerView>
 
 
 </FrameLayout>

@@ -8,19 +8,28 @@ import androidx.recyclerview.widget.RecyclerView
 import com.somethingsimple.core_api.data.vo.ApiEntry
 import com.somethingsimple.feature_categories.databinding.ApiEntryCardBinding
 
-class ApisAdapter : ListAdapter<ApiEntry, RecyclerView.ViewHolder>(ApisDiffCallback()) {
+class ApisAdapter(
+    val apiClickCallback: (ApiEntry) -> Unit
+) : ListAdapter<ApiEntry, RecyclerView.ViewHolder>(ApisDiffCallback()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val binding =
             ApiEntryCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ApiEntryViewHolder(binding)
+        return ApiEntryViewHolder(binding, apiClickCallback)
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         (holder as ApiEntryViewHolder).bind(getItem(position))
     }
 
-    inner class ApiEntryViewHolder(private val binding: ApiEntryCardBinding) :
+    inner class ApiEntryViewHolder(
+        private val binding: ApiEntryCardBinding,
+        apiClickCallback: (ApiEntry) -> Unit
+    ) :
         RecyclerView.ViewHolder(binding.root) {
+
+        init {
+            itemView.setOnClickListener { apiClickCallback.invoke(getItem(layoutPosition)) }
+        }
 
         fun bind(item: ApiEntry) {
             binding.apiName.text = item.api

@@ -13,6 +13,7 @@ dependencies {
 
             view_model,
             core_ktx,
+            fragment_ktx,
             nav_fragment,
             nav_ui,
             //retrofit
