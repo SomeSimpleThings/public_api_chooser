@@ -14,13 +14,6 @@ data class ApiEntryEntity(
     @ColumnInfo val cors: String,
     @ColumnInfo val description: String,
     @ColumnInfo val hTTPS: Boolean,
-    @ColumnInfo val link: String
-
+    @ColumnInfo val link: String,
 ) {
-    fun isHttpsCorrect(): Boolean {
-        return if (hTTPS)
-            link.startsWith("https:")
-        else
-            link.startsWith("http:")
-    }
 }

@@ -13,7 +13,7 @@ class LocalPublicApiDataSourceImpl @Inject constructor(private val publicApiDao:
     override fun save(apis: List<ApiEntry>): Completable =
         publicApiDao.retain(apis.map { apiEntry ->
             ApiEntryEntity(
-                0,
+                apiEntry.id,
                 apiEntry.api,
                 apiEntry.auth,
                 apiEntry.category,
@@ -29,7 +29,7 @@ class LocalPublicApiDataSourceImpl @Inject constructor(private val publicApiDao:
         return publicApiDao
             .retain(apis.map { apiEntry ->
                 ApiEntryEntity(
-                    0,
+                    apiEntry.id,
                     apiEntry.api,
                     apiEntry.auth,
                     apiEntry.category,
@@ -48,7 +48,7 @@ class LocalPublicApiDataSourceImpl @Inject constructor(private val publicApiDao:
         publicApiDao
             .retain(apis.map { apiEntry ->
                 ApiEntryEntity(
-                    0,
+                    apiEntry.id,
                     apiEntry.api,
                     apiEntry.auth,
                     apiEntry.category,
@@ -64,7 +64,7 @@ class LocalPublicApiDataSourceImpl @Inject constructor(private val publicApiDao:
     override fun retain(apiEntry: ApiEntry): Maybe<ApiEntry> {
         return publicApiDao.retain(
             ApiEntryEntity(
-                0,
+                apiEntry.id,
                 apiEntry.api,
                 apiEntry.auth,
                 apiEntry.category,
