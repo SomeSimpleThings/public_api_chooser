@@ -11,7 +11,7 @@ import androidx.room.PrimaryKey
         entity = ApiEntryEntity::class,
         parentColumns = ["link"],
         childColumns = ["apiLink"],
-        onDelete = ForeignKey.CASCADE,
+        onDelete = ForeignKey.NO_ACTION,
         onUpdate = ForeignKey.CASCADE
     )]
 )
