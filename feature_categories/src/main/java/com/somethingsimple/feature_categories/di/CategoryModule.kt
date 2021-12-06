@@ -6,33 +6,27 @@ import com.somethingsimple.core_api.viewmodel.ViewModelFactory
 import com.somethingsimple.core_api.viewmodel.ViewModelKey
 import com.somethingsimple.feature_categories.data.repo.PublicApiRepository
 import com.somethingsimple.feature_categories.data.repo.PublicApiRepositoryImpl
-import com.somethingsimple.feature_categories.domain.CategoryUseCase
 import com.somethingsimple.feature_categories.ui.category.CategoryViewModel
 import dagger.Binds
 import dagger.Module
-import dagger.Provides
 import dagger.multibindings.IntoMap
 
 @Module
-abstract class CategoryModule {
+interface CategoryModule {
 
     @Binds
     @CategoryFeatureScope
-    abstract fun bindApiEntryRepository(publicApiRepositoryImpl: PublicApiRepositoryImpl): PublicApiRepository
+    fun bindApiEntryRepository(publicApiRepositoryImpl: PublicApiRepositoryImpl): PublicApiRepository
 
     @Binds
-    abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
+    @CategoryFeatureScope
+    fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
 
 
-    @Module
-    companion object {
-        @Provides
-        @CategoryFeatureScope
-        @IntoMap
-        @ViewModelKey(CategoryViewModel::class)
-        fun provideCategoryViewModel(categoryUseCase: CategoryUseCase): ViewModel =
-            CategoryViewModel(categoryUseCase)
-    }
-
+    @Binds
+    @CategoryFeatureScope
+    @IntoMap
+    @ViewModelKey(CategoryViewModel::class)
+    fun provideCategoryViewModel(categoryViewModel: CategoryViewModel): ViewModel
 
 }
