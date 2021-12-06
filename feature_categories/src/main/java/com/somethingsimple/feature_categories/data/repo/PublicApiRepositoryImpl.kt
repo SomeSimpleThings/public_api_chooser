@@ -71,6 +71,6 @@ class PublicApiRepositoryImpl @Inject constructor(
     private fun isOutdated(): Boolean {
         val delta = Calendar.getInstance().time.time - appPrefsDataSource.getLastUpdateTime().time
 
-        return TimeUnit.MINUTES.convert(delta, TimeUnit.MILLISECONDS) > 10
+        return TimeUnit.HOURS.convert(delta, TimeUnit.MILLISECONDS) > 1
     }
 }

@@ -2,10 +2,12 @@ package com.somethingsimple.feature_categories.ui.category
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.somethingsimple.core_api.data.vo.ApiEntry
+import com.somethingsimple.feature_categories.R
 import com.somethingsimple.feature_categories.databinding.ApiEntryCardBinding
 
 class ApisAdapter(
@@ -33,6 +35,12 @@ class ApisAdapter(
 
         fun bind(item: ApiEntry) {
             binding.apiName.text = item.api
+            binding.apiCard.setCardBackgroundColor(getColor(item.favourite))
+        }
+
+        private fun getColor(favourite: Boolean): Int {
+            val color = if (favourite) R.color.green_background else R.color.blue_background
+            return ContextCompat.getColor(itemView.context, color)
         }
     }
 

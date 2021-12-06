@@ -20,4 +20,6 @@ interface LocalPublicApiDataSource {
     fun getCategories(): Maybe<List<Category>>
     fun getApiByCategory(categoryName: String): Maybe<List<ApiEntry>>
     fun getApiByCategory(categoryName: String, count: Int): Maybe<List<ApiEntry>>
+    fun saveToFavourite(apiEntry: ApiEntry): Completable
+    fun removeFromFavourite(apiEntry: ApiEntry): Completable
 }

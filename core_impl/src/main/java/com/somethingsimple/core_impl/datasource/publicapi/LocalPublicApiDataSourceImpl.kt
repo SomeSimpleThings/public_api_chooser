@@ -1,7 +1,9 @@
 package com.somethingsimple.core_impl.datasource.publicapi
 
+import com.somethingsimple.core_api.data.db.FavouriteDao
 import com.somethingsimple.core_api.data.db.PublicApiDao
 import com.somethingsimple.core_api.data.db.entity.ApiEntryEntity
+import com.somethingsimple.core_api.data.db.entity.FavouritesEntity
 import com.somethingsimple.core_api.data.vo.ApiEntry
 import com.somethingsimple.core_api.data.vo.Category
 import com.somethingsimple.core_api.datasource.publicapi.LocalPublicApiDataSource
@@ -9,7 +11,10 @@ import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Maybe
 import javax.inject.Inject
 
-class LocalPublicApiDataSourceImpl @Inject constructor(private val publicApiDao: PublicApiDao) :
+class LocalPublicApiDataSourceImpl @Inject constructor(
+    private val publicApiDao: PublicApiDao,
+    private val favouriteDao: FavouriteDao
+) :
     LocalPublicApiDataSource {
 
     override fun save(apiEntry: ApiEntry): Completable {
@@ -63,11 +68,11 @@ class LocalPublicApiDataSourceImpl @Inject constructor(private val publicApiDao:
 //        publicApiDao.getPublicApiById(id).map { ApiEntry(it) }
 
     override fun getApiByLink(link: String): Maybe<ApiEntry> =
-        publicApiDao.getPublicApiByName(link).map { ApiEntry(it) }
+        publicApiDao.getPublicApiByLink(link).map { ApiEntry(it) }
 
     override fun getCategories(): Maybe<List<Category>> {
         return publicApiDao.getCategories().map {
-            it.map { categorySynt -> Category(categorySynt.category) }
+            it.map { categorySynt -> Category(categorySynt.categoryName) }
         }
     }
 
@@ -86,4 +91,12 @@ class LocalPublicApiDataSourceImpl @Inject constructor(private val publicApiDao:
                     ApiEntry(it)
                 }
             }
+
+    override fun saveToFavourite(apiEntry: ApiEntry): Completable {
+        return favouriteDao.insert(FavouritesEntity(0, apiEntry.link))
+    }
+
+    override fun removeFromFavourite(apiEntry: ApiEntry): Completable =
+        favouriteDao.delete(apiEntry.link)
+
 }
