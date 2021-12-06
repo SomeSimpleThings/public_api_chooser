@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import com.somethingsimple.core_api.di.provider.AppWithComponent
-import com.somethingsimple.core_api.ui.common.BackButtonListener
 import com.somethingsimple.feature_api_details.R
 import com.somethingsimple.feature_api_details.databinding.FragmentApiDetailsBinding
 import com.somethingsimple.feature_api_details.di.ApiDetailsComponent
@@ -17,8 +16,7 @@ import javax.inject.Inject
 
 private const val ARG_API_ID = "api_id"
 
-class ApiDetailsFragment : Fragment(R.layout.fragment_api_details),
-    BackButtonListener {
+class ApiDetailsFragment : Fragment(R.layout.fragment_api_details) {
 
     @Inject
     lateinit var factory: ViewModelProvider.Factory
@@ -55,7 +53,7 @@ class ApiDetailsFragment : Fragment(R.layout.fragment_api_details),
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        apiDetailsViewModel.liveData.observe(viewLifecycleOwner) {
+        apiDetailsViewModel.detailsLiveData.observe(viewLifecycleOwner) {
             viewBinding?.apply {
                 apiCategory.text = it.category
                 apiName.text = it.api
@@ -85,5 +83,4 @@ class ApiDetailsFragment : Fragment(R.layout.fragment_api_details),
         viewBinding = null
     }
 
-    override fun backPressed(): Boolean = true
 }

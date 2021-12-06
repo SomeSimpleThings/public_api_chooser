@@ -33,6 +33,7 @@ dependencies {
             //Dagger
             dagger
     )
+    implementation project(path: ':feature_api_list')
     kapt(
             dagger_kapt)
 

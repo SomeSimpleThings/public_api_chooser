@@ -1,20 +1,26 @@
 package com.somethingsimple.feature_categories.ui.category
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import com.somethingsimple.core_api.common.plusAssign
+import com.somethingsimple.core_api.viewmodel.BaseViewModel
 import com.somethingsimple.feature_categories.domain.CategoryUseCase
 import com.somethingsimple.feature_categories.domain.CategoryWithEntries
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
 import javax.inject.Inject
 
-class CategoryViewModel @Inject constructor(val categoryUseCase: CategoryUseCase) : ViewModel() {
+class CategoryViewModel @Inject constructor(val categoryUseCase: CategoryUseCase) :
+    BaseViewModel() {
 
-    val livedata = MutableLiveData<List<CategoryWithEntries>>()
+    private val _apiLivedata = MutableLiveData<List<CategoryWithEntries>>()
+    val apiLiveData: LiveData<List<CategoryWithEntries>>
+        get() = _apiLivedata
 
     fun getCategories() {
-        categoryUseCase.getCats().subscribeOn(Schedulers.io())
+        compositeDisposable += categoryUseCase.getCats()
+            .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 ::loadCategories,
@@ -28,7 +34,7 @@ class CategoryViewModel @Inject constructor(val categoryUseCase: CategoryUseCase
     }
 
     private fun loadCategories(category: List<CategoryWithEntries>) {
-        livedata.postValue(category)
+        _apiLivedata.postValue(category)
     }
 
 }
