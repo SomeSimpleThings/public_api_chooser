@@ -5,21 +5,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.somethingsimple.core_api.di.provider.AppWithComponent
-import com.somethingsimple.core_api.ui.common.BackButtonListener
-import com.somethingsimple.core_api.ui.common.BaseFragment
 import com.somethingsimple.feature_categories.R
 import com.somethingsimple.feature_categories.databinding.FragmentCategoriesBinding
 import com.somethingsimple.feature_categories.di.CategoryComponent
 import javax.inject.Inject
 
 
-class CategoriesFragment : BaseFragment(),
-    BackButtonListener {
+class CategoriesFragment : Fragment(R.layout.fragment_categories) {
 
     private var viewBinding: FragmentCategoriesBinding? = null
 
@@ -68,7 +66,7 @@ class CategoriesFragment : BaseFragment(),
         super.onViewCreated(view, savedInstanceState)
         categoryViewModel.getCategories()
 
-        categoryViewModel.livedata.observe(viewLifecycleOwner, { list ->
+        categoryViewModel.apiLiveData.observe(viewLifecycleOwner, { list ->
             adapt?.submitList(list)
         })
     }
@@ -82,6 +80,4 @@ class CategoriesFragment : BaseFragment(),
         @JvmStatic
         fun newInstance() = CategoriesFragment()
     }
-
-    override fun backPressed() = true
 }

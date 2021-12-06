@@ -69,7 +69,7 @@ class ApisFragment : Fragment(R.layout.fragment_apis),
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         apisViewModel.getApisForCategory(category)
-        apisViewModel.livedata.observe(viewLifecycleOwner, { list ->
+        apisViewModel.apiLiveData.observe(viewLifecycleOwner, { list ->
             apisAdapter?.submitList(list)
         })
 

@@ -36,6 +36,9 @@ interface PublicApiDao {
     @Query("$API_ENTRIES_QUERY WHERE link =:link LIMIT 1")
     fun getPublicApiByLink(link: String): Maybe<ApiEntryEntity>
 
+    @Query(FAVOURITES_ENTRIES_QUERY)
+    fun getFavourites(): Maybe<List<ApiEntryEntity>>
+
     companion object {
         private const val API_ENTRIES_QUERY = """
             SELECT  
@@ -43,6 +46,15 @@ interface PublicApiDao {
                 case when f.apiLink  = a.link then 1 else  0 end as favourite
             FROM  ApiEntryEntity   a 
             LEFT  JOIN  FavouritesEntity   f 
+            ON  a.link = f.apiLink
+            """
+
+        private const val FAVOURITES_ENTRIES_QUERY = """
+            SELECT  
+                api, auth, category, cors, description, hTTPS, link,
+                case when f.apiLink  = a.link then 1 else  0 end as favourite
+            FROM  ApiEntryEntity   a 
+            JOIN  FavouritesEntity   f 
             ON  a.link = f.apiLink
             """
     }

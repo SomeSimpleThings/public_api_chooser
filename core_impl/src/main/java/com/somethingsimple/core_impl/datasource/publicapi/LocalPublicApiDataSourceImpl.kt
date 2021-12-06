@@ -99,4 +99,12 @@ class LocalPublicApiDataSourceImpl @Inject constructor(
     override fun removeFromFavourite(apiEntry: ApiEntry): Completable =
         favouriteDao.delete(apiEntry.link)
 
+    override fun getFavourites(): Maybe<List<ApiEntry>> {
+        return publicApiDao.getFavourites().map { apiEntries ->
+            apiEntries.map {
+                ApiEntry(it)
+            }
+        }
+    }
+
 }
